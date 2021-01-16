@@ -68,3 +68,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Utilising MERN Stack:
+
+## Database Used: 
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) 
+- Provided API must be placed within env file then connected to the server.js  
+
+## Dependencies for Backend:
+- `npm install express` 
+- `npm install cors` 
+- `npm install mongoose` 
+- `npm install dotenv` 
+- `npm install -g nodemon` / `sudo install -g nodemon`
+
+## Dependency for Routing:
+- `npm install react-router-dom`
+
+## Dependency for Connecting Backend to Frontend (and vice versa):
+- `npm install axios`
