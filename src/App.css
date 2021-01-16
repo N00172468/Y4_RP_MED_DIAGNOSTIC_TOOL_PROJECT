@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 body {
@@ -43,3 +43,12 @@ body {
   background: #673ab7;
 }
 /* -------------------------------- */
+
+
+/* ---------- CARDS ---------- */
+.cardRoot {
+  /* max-width: 1000px; */
+  margin-left: 5%;
+  width: 90%;
+}
+/* -------------------------- */
