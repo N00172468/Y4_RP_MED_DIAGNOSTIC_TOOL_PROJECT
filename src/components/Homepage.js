@@ -2,19 +2,35 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 // import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+
 import Typography from '@material-ui/core/Typography';
+import {
+    createStyles,
+withStyles,
+} from "@material-ui/core";
 
 import './../App.css'
 
+const styles = (theme) =>
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.secondary.main,
+      margin: theme.spacing(2)
+    },
+    button: {
+      margin: `0px ${theme.spacing(1)}px`
+
+    }
+  });
+  
 const Info = props => (
-    <div>
+    <Card className={props.classes.root} >
         <CardActionArea>
             <CardContent>
                 <Typography
@@ -57,7 +73,8 @@ const Info = props => (
                     size="large" 
                     color="primary"
                     type="submit"
-                    value="Edit"
+                    variant="contained"
+                    className={props.classes.button}
                 >
                     <Link to={"/edit/" + props.info._id}>
                         Edit
@@ -66,20 +83,24 @@ const Info = props => (
 
                 <Button 
                     size="large" 
-                    color="danger"
+                    className={props.classes.button}
+                    // color="danger"
                     type="submit"
-                    value="Delete"
+                    // value="Delete"
+                    variant="contained"
+                    onClick={() => { props.deleteInfo(props.info._id) }}
+
                 >
-                    <a href="#" onClick={() => { props.deleteInfo(props.info._id) }}>
+                    
                         Delete
-                    </a>
+                    
                 </Button>
             </div>
         </CardActions>
-    </div>
+    </Card>
 );
 
-export default class Homepage extends Component {
+class Homepage extends Component {
     constructor(props) {
         super(props);
 
@@ -123,42 +144,14 @@ export default class Homepage extends Component {
                     Recent Activities
                 </Typography>
 
-                <Card>
-                    <CardActionArea>
-                        <CardContent>
-                            <Typography
-                                variant="body2" 
-                                color="textSecondary"
-                                component="p"    
-                                style={{ fontFamily: 'Montserrat' }}
-                            >
-                                { this.infoList() }
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
+      {      this.state.info.map(currentInfo => {
+        return <Info info={currentInfo} deleteInfo={this.deleteInfo} key={currentInfo._id} classes={this.props.classes}/>;
+    })
+}
             </div>
-
-                // <h3 className="caption">Logged <span className="tertiaryCol">Info</span></h3>
-
-                // <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
-                //     <table>
-                //         <thead className="heads">
-                //             <tr>
-                //                 <th>Username</th>
-                //                 <th>Description</th>
-                //                 <th>Experience</th>
-                //                 <th>Date</th>
-                //                 <th>Action</th>
-                //             </tr>
-                //         </thead>
-
-                //         <tbody style={{ textAlign: 'center', fontFamily: 'Montserrat' }}>
-                //             { this.infoList() }
-                //         </tbody>
-                //     </table>
-                // </div>
-            // </div>
         );
     }
 }
+
+
+export default withStyles(styles)(Homepage)                             
