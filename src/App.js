@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
+import CreateInfo from "./components/CreateInfo";
 // import EditInfo from "./components/EditInfo";
-// import CreateInfo from "./components/CreateInfo";
 // import CreateUser from "./components/CreateUser";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -23,9 +23,9 @@ function App() {
           <Navigation>
             <Switch>
               <Route path="/" exact component={Homepage} />
-              {/* <Route path="/edit/:id" component={EditInfo} />
               <Route path="/create" component={CreateInfo} />
-              <Route path="/user" component={CreateUser} /> */}
+              {/* <Route path="/edit/:id" component={EditInfo} /> */}
+              {/* <Route path="/user" component={CreateUser} /> */}
             </Switch>
           </Navigation>
         </div>

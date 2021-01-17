@@ -1,9 +1,89 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+  } from '@material-ui/pickers';
+
+import {
+    createStyles,
+    withStyles,
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    Button,
+    Typography,
+    InputLabel,
+    MenuItem,
+    Select,
+    FormControl,
+    TextField
+
+} from "@material-ui/core";
+
 import './../App.css'
 
+const styles = (theme) =>
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.secondary.main,
+      margin: theme.spacing(2)
+    },
+    button: {
+      margin: `0px ${theme.spacing(1)}px`
+
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+    marginTop: theme.spacing(2),
+    },
+  });
+
+// const CreateInfoCard = props => (
+//     <Card className={props.classes.root} >
+//         <CardActionArea>
+//             <CardContent>
+//                 <FormControl className={props.classes.formControl}>
+//                     <InputLabel id="demo-simple-select-label">User</InputLabel>  
+
+//                     <Select
+//                         labelId="demo-simple-select-label"
+//                         id="demo-simple-select"
+//                         value={this.state.username}
+//                         onChange={this.onChangeUsername}
+//                     >
+//                         {
+//                             this.state.users.map(function(user) {
+//                                 return <option
+//                                             key={user}
+//                                             value={user}
+//                                         >
+//                                             {user}
+//                                         </option>
+//                             })
+//                         };
+//                     </Select>
+//                 </FormControl>
+//             </CardContent>
+//         </CardActionArea>
+//     </Card>
+// );
+
+// const classes = styles();
+// const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+// const handleDateChange = (date) => {
+//     setSelectedDate(date);
+//   };
 export default class CreateInfo extends Component {
+
     constructor(props) {
         super(props);
 
@@ -82,5 +162,100 @@ export default class CreateInfo extends Component {
         window.location = '/';
     };
 
-    
+    render() {
+        return (
+            <div className="cardRoot">
+                <Typography 
+                    gutterBottom 
+                    variant="h5" 
+                    component="h2" 
+                    style={{ fontFamily: "Raleway", textTransform: "uppercase", letterSpacing: "3px" }}
+                >
+                    Add Information
+                </Typography>
+
+                {/* <CreateInfoCard classes={this.props.classes} /> */}
+
+                <Card>
+                    <CardActionArea>
+                        <CardContent>
+                            <form noValidate autoComplete="off">
+                                <FormControl>
+                                    <InputLabel id="demo-simple-select-label">User</InputLabel>  
+
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={this.state.username}
+                                        onChange={this.onChangeUsername}
+                                        style={{ marginBottom: "35px" }}
+                                    >
+                                        {
+                                            this.state.users.map(function(user) {
+                                                return <option
+                                                            key={user}
+                                                            value={user}
+                                                        >
+                                                            {user}
+                                                        </option>
+                                            })
+                                        };
+                                    </Select>
+                                </FormControl>
+
+                                <TextField 
+                                    fullWidth
+                                    id="standard-basic" 
+                                    label="Description" 
+                                    value={this.state.description}
+                                    onChange={this.onChangeDescription}
+                                    style={{ marginBottom: "35px" }}
+                                />
+
+                                <TextField 
+                                    id="standard-basic" 
+                                    label="Experience (In Years)" 
+                                    value={this.state.experience}
+                                    onChange={this.onChangeExperience}
+                                    style={{ marginBottom: "35px" }}
+                                />
+
+                                <MuiPickersUtilsProvider utils={DateFnsUtils} style={{ padding: '10px', display: 'flex'}}>
+                                    <div style={{ marginLeft: "auto" }}>
+                                        <KeyboardDatePicker
+                                            margin="normal"
+                                            id="date-picker-dialog"
+                                            label="Date picker dialog"
+                                            format="dd/MM/yyyy"
+                                            onChange={this.onChangeDate}
+                                            KeyboardButtonProps={{
+                                                'aria-label': 'change date',
+                                        }}
+                                        />
+                                    </div>
+                                </MuiPickersUtilsProvider>
+                            </form>
+                        </CardContent>
+                    </CardActionArea>
+
+                    <CardActions style={{ padding: '10px', display: 'flex'}}>
+                        <div style={{ marginLeft: "auto" }}>
+                            <Button 
+                                size="large" 
+                                color="primary"
+                                type="submit"
+                                variant="contained"
+                                value="Create Info Log"
+                                onSubmit={this.onSubmit}
+                            >
+                                Submit
+                            </Button>
+                        </div>
+                    </CardActions>
+                </Card>
+            </div>
+        );
+    };
 }
+
+// export default withStyles(styles)(CreateInfo)   
