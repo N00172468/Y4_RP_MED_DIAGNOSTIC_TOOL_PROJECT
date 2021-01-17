@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import Nav from "./Nav";
 
 import {
   makeStyles,
@@ -16,17 +19,19 @@ import {
   Drawer,
   CssBaseline
 } from "@material-ui/core";
-import Nav from "./Nav";
-
 import {
-
   Inbox,
   Mail,
-  Menu
+  Menu,
+  Home,
+  AddCircleOutline,
+  Face,
+  TurnedInNot,
+  Widgets
   // ListItemIcon
 } from "@material-ui/icons";
 
-const drawerWidth = 240;
+const drawerWidth = 500;
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -41,7 +46,7 @@ const styles = makeStyles((theme) => ({
   appBar: {
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
+      marginLeft: 'drawerWidth',
     },
   },
   menuButton: {
@@ -60,98 +65,141 @@ const styles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
-const Navigation = (props) => {
-    const { window } = props;
-    
-    const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-  
-    const handleDrawerToggle = () => {
-      setMobileOpen(!mobileOpen);
-    };
-const container = window !== undefined ? () => window().document.body : undefined;
 
-const drawer = (
+const Navigation = (props) => {
+  const { window } = props;
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const container = window !== undefined ? () => window().document.body : undefined;
+
+  const drawer = (
     <div>
       <div className={props.classes.toolbar} />
       <Divider />
+
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <Link to="/" style ={{ textDecoration: "none" }}>
+          {['Home'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index = <Home />}
+              </ListItemIcon>
+
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </Link>
+
+        <Link to="/create" style ={{ textDecoration: "none" }}>
+          {['Create Info'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index = <AddCircleOutline />}
+              </ListItemIcon>
+
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </Link>
+
+        <Link to="/User" style ={{ textDecoration: "none" }}>
+          {['Add User'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index = <Face />}
+              </ListItemIcon>
+
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </Link>
+      
+        <Link to="/" style ={{ textDecoration: "none" }}>
+          {['Bookmarks'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index = <TurnedInNot />}
+              </ListItemIcon>
+
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </Link>
+
+        <Link to="/" style ={{ textDecoration: "none" }}>
+          {['Categories'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index = <Widgets />}
+              </ListItemIcon>
+
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </Link>
       </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+
+      {/* <Divider /> */}
     </div>
   );
 
   return (
-<React.Fragment>
-      <CssBaseline />
-      <AppBar position="fixed" className={props.classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={props.classes.menuButton}
-          >
-            <Menu />
-          </IconButton>
-          
-          🦆
-          <Nav /> 
+    <React.Fragment>
+          <CssBaseline />
 
-        </Toolbar>
-      </AppBar>
-      <nav className={props.classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: props.classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: props.classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-      <main className={props.classes.content}>
-        <div className={props.classes.toolbar} />
+          <AppBar position="fixed" className={props.classes.appBar}>
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                className={props.classes.menuButton}
+              >
+                <Menu />
+              </IconButton>
+              
+              <Nav /> 
+            </Toolbar>
+          </AppBar>
+
+          <nav className={props.classes.drawer} aria-label="mailbox folders">
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Hidden smUp implementation="css">
+              <Drawer
+                container={container}
+                variant="temporary"
+                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                classes={{paper: props.classes.drawerPaper}}
+                ModalProps={{keepMounted: true}} // Better open performance on mobile.
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+
+            <Hidden xsDown implementation="css">
+              <Drawer
+                classes={{paper: props.classes.drawerPaper}}
+                variant="permanent"
+                open
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+          </nav>
+
+          <main className={props.classes.content}>
+            <div className={props.classes.toolbar} />
+            
             {props.children}
-      </main>
+          </main>
 
-</React.Fragment>
+    </React.Fragment>
   );
 }
 

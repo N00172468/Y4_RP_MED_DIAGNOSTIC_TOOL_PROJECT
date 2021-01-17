@@ -76,7 +76,7 @@ const Info = props => (
                     variant="contained"
                     className={props.classes.button}
                 >
-                    <Link to={"/edit/" + props.info._id}>
+                    <Link to={"/edit/" + props.info._id} style ={{ textDecoration: "none" }}>
                         Edit
                     </Link> 
                 </Button>
@@ -84,12 +84,12 @@ const Info = props => (
                 <Button 
                     size="large" 
                     className={props.classes.button}
-                    // color="danger"
+                    color="secondary.light"
                     type="submit"
-                    // value="Delete"
+                    value="Delete"
                     variant="contained"
                     onClick={() => { props.deleteInfo(props.info._id) }}
-
+                    style ={{ textDecoration: "none" }}
                 >
                     
                         Delete
@@ -140,14 +140,19 @@ class Homepage extends Component {
     render() {
         return (
             <div className="cardRoot">
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography 
+                    gutterBottom 
+                    variant="h5" 
+                    component="h2" 
+                    style={{ fontFamily: "Raleway", textTransform: "uppercase", letterSpacing: "3px" }}
+                >
                     Recent Activities
                 </Typography>
 
-      {      this.state.info.map(currentInfo => {
-        return <Info info={currentInfo} deleteInfo={this.deleteInfo} key={currentInfo._id} classes={this.props.classes}/>;
-    })
-}
+                {this.state.info.map(currentInfo => {
+                    return <Info info={currentInfo} deleteInfo={this.deleteInfo} key={currentInfo._id} classes={this.props.classes}/>;
+                    })
+                }
             </div>
         );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-// import Nav from "./components/Nav";
+import Nav from "./components/Nav";
 import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 // import EditInfo from "./components/EditInfo";
@@ -18,8 +18,8 @@ function App() {
     <Router>
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          {/* <Nav />  */}
-          {/* 🦆 */}
+          <Nav /> 
+          {/* <Navigation /> */}
           <Navigation>
             <Switch>
               <Route path="/" exact component={Homepage} />
@@ -30,6 +30,7 @@ function App() {
           </Navigation>
         </div>
       </MuiThemeProvider>
+      {/* 🦆 */}
     </Router>
   );
 }
