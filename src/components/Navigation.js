@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Nav from "./Nav";
 
 import {
-  makeStyles,
+  createStyles,
   useTheme,
   withStyles,
   List,
@@ -32,44 +32,78 @@ import {
   // ListItemIcon
 } from "@material-ui/icons";
 
-const drawerWidth = 500;
+const drawerWidth = 60;
 
-const styles = makeStyles((theme) => ({
+const styles = (theme) => 
+createStyles({
   root: {
     display: 'flex',
   },
-
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
-
   appBar: {
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: 'drawerWidth',
+      marginRight: drawerWidth,
     },
+    
   },
-
+  appBarToolbar: {
+    justifyContent: 'space-between'
+  },
   menuButton: {
-    marginRight: theme.spacing(2),
+    // marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
   },
-
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
   },
-
+  mobileDrawerPaper: {
+    width: 240
+  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  // drawer: {
+  //   [theme.breakpoints.up('sm')]: {
+  //     width: drawerWidth,
+  //     flexShrink: 0,
+  //   },
+  // },
+
+  // appBar: {
+  //   [theme.breakpoints.up('sm')]: {
+  //     width: `calc(100% - ${drawerWidth}px)`,
+  //     marginLeft: drawerWidth
+  //   },
+  // },
+
+  // menuButton: {
+  //   marginRight: theme.spacing(2),
+  //   [theme.breakpoints.up('sm')]: {
+  //     display: 'none',
+  //   },
+  // },
+
+  // // necessary for content to be below app bar
+  // toolbar: theme.mixins.toolbar,
+  // drawerPaper: {
+  //   width: drawerWidth,
+  // },
+
+  // content: {
+  //   flexGrow: 1,
+  //   padding: theme.spacing(3),
+  // },
 
   search: {
     position: 'relative',
@@ -116,20 +150,21 @@ const styles = makeStyles((theme) => ({
       },
     },
   },
-}));
+});
 
 const Navigation = (props) => {
-  const { window } = props;
+  const { window, classes } = props;
+  
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const container = window !== undefined ? () => window().document.body : undefined;
-
   const drawer = (
     <div>
-      <div className={props.classes.toolbar} />
+      <div className={classes.toolbar}>
+
       <Divider />
 
       <List>
@@ -196,27 +231,22 @@ const Navigation = (props) => {
 
       {/* <Divider /> */}
     </div>
+    </div>
   );
 
+  const container = window !== undefined ? () => window().document.body : undefined;
+
   return (
-    <React.Fragment>
+    <div className={classes.root}>
           <CssBaseline />
 
           <AppBar position="fixed" className={props.classes.appBar}>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                className={props.classes.menuButton}
-              >
-                <Menu />
-              </IconButton>
+            <Toolbar className={classes.appBarToolbar}>
+     
               
-              <Nav /> 
+              {/* <Nav />  */}
 
-              <div className={props.classes.search}>
+              <div className={props.classes.search} edge="start">
                 <div className={props.classes.searchIcon}>
                   <Search />
                 </div>
@@ -229,30 +259,39 @@ const Navigation = (props) => {
                   inputProps={{ 'aria-label': 'search' }}
                 />
               </div>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="end"
+                onClick={handleDrawerToggle}
+                className={props.classes.menuButton}
+              >
+                <Menu />
+              </IconButton>
             </Toolbar>
           </AppBar>
-
-          <nav className={props.classes.drawer} aria-label="mailbox folders">
+          <nav className={classes.drawer} aria-label="mailbox folders">
             {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-            <Hidden smUp implementation="css">
+            <Hidden smUp implementation="css"> 
               <Drawer
                 container={container}
                 variant="temporary"
-                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                anchor={theme.direction === 'rtl' ? 'right' : 'right'}
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
-                classes={{paper: props.classes.drawerPaper}}
+                classes={{paper: props.classes.mobileDrawerPaper}}
                 ModalProps={{keepMounted: true}} // Better open performance on mobile.
               >
                 {drawer}
               </Drawer>
-            </Hidden>
+            </Hidden> 
 
             <Hidden xsDown implementation="css">
-              <Drawer
+            <Drawer
                 classes={{paper: props.classes.drawerPaper}}
+                className={props.classes.drawer}
                 variant="permanent"
-                open
+                anchor="right"
               >
                 {drawer}
               </Drawer>
@@ -265,7 +304,8 @@ const Navigation = (props) => {
             {props.children}
           </main>
 
-    </React.Fragment>
+    </div>
+    
   );
 }
 

@@ -24,10 +24,11 @@ import {
     TextField
 
 } from "@material-ui/core";
+import {withRouter} from 'react-router-dom';
 
-import './../App.css'
 
-export default class EditInfo extends Component {
+
+class EditInfo extends Component {
     constructor(props) {
         super(props);
 
@@ -36,6 +37,7 @@ export default class EditInfo extends Component {
         this.onChangeExperience = this.onChangeExperience.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleUserSelect = this.handleUserSelect.bind(this)
 
         this.state = {
             username: '',
@@ -43,7 +45,8 @@ export default class EditInfo extends Component {
             experience: 0,
             date: new Date(),
 
-            users: []
+            users: [],
+            loading: true
         };
     };
 
@@ -54,6 +57,7 @@ export default class EditInfo extends Component {
         // });
         axios.get('http://localhost:5000/info/' + this.props.match.params.id)
             .then(response => {
+                console.log('respponse!', response)
                 this.setState({
                     username: response.data.username,
                     description: response.data.description,
@@ -67,13 +71,21 @@ export default class EditInfo extends Component {
 
         axios.get('http://localhost:5000/users/')
             .then(response => {
+                
+
                 if (response.data.length > 0) {
                     this.setState({
-                        users: response.data.map(user => user.username)
+                        users: response.data,
+                        loading: false
                     });
                 }
             });
     };
+
+    handleUserSelect(e) {
+        console.log('select!', e)
+        // this,set
+    }
 
     onChangeUsername(e) {
         this.setState({
@@ -112,12 +124,16 @@ export default class EditInfo extends Component {
         console.log(info);
 
         axios.post('http://localhost:5000/info/update/' + this.props.match.params.id, info)
-            .then(res => console.log(res.data));
+            .then(res => {
+                this.props.history.push('/')
 
-        window.location = '/';
+            });
+
+        
     };
 
     render() {
+        if(this.state.loading) return <Typography>Loading</Typography>
         return (
             <div className="cardRoot">
                 <Typography 
@@ -132,7 +148,7 @@ export default class EditInfo extends Component {
                 {/* <CreateInfoCard classes={this.props.classes} /> */}
 
                 <Card>
-                    <CardActionArea>
+                    {/* <CardActionArea> */}
                         <CardContent>
                             <form noValidate autoComplete="off">
                                 <FormControl>
@@ -145,13 +161,16 @@ export default class EditInfo extends Component {
                                         onChange={this.onChangeUsername}
                                         style={{ marginBottom: "35px" }}
                                     >
+                                     
                                         {
-                                            this.state.users.map(function(user) {
+                                            this.state.users.map((user, i) => {
+                                                
                                                 return <option
-                                                            key={user}
-                                                            value={user}
+                                                            key={i}
+                                                            value={user.username}
+                                                            onChange={this.handleUserSelect}
                                                         >
-                                                            {user}
+                                                            {user.username}
                                                         </option>
                                             })
                                         };
@@ -191,7 +210,7 @@ export default class EditInfo extends Component {
                                 </MuiPickersUtilsProvider>
                             </form>
                         </CardContent>
-                    </CardActionArea>
+                    {/* </CardActionArea> */}
 
                     <CardActions style={{ padding: '10px', display: 'flex'}}>
                         <div style={{ marginLeft: "auto" }}>
@@ -201,7 +220,7 @@ export default class EditInfo extends Component {
                                 type="submit"
                                 variant="contained"
                                 value="Create Info Log"
-                                onSubmit={this.onSubmit}
+                                onClick={this.onSubmit}
                             >
                                 Submit
                             </Button>
@@ -212,3 +231,5 @@ export default class EditInfo extends Component {
         );
     };
 }
+
+export default withRouter(EditInfo)

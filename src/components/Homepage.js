@@ -84,7 +84,7 @@ const Info = props => (
                 <Button 
                     size="large" 
                     className={props.classes.button}
-                    color="secondary.light"
+                    color="secondary"
                     type="submit"
                     value="Delete"
                     variant="contained"

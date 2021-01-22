@@ -25,7 +25,10 @@ import {
 
 } from "@material-ui/core";
 
-import './../App.css'
+
+import {withRouter} from 'react-router-dom';
+
+
 
 const styles = (theme) =>
   createStyles({
@@ -81,7 +84,7 @@ const styles = (theme) =>
 // const handleDateChange = (date) => {
 //     setSelectedDate(date);
 //   };
-export default class CreateInfo extends Component {
+class CreateInfo extends Component {
 
     constructor(props) {
         super(props);
@@ -153,12 +156,13 @@ export default class CreateInfo extends Component {
             date: this.state.date
         };
 
-        console.log(info);
+        // console.log(info);
 
         axios.post('http://localhost:5000/info/add', info)
             .then(res => console.log(res.data));
 
-        window.location = '/';
+        // window.location = '/';
+        this.props.history.push('/')
     };
 
     render() {
@@ -176,7 +180,7 @@ export default class CreateInfo extends Component {
                 {/* <CreateInfoCard classes={this.props.classes} /> */}
 
                 <Card>
-                    <CardActionArea>
+                    {/* <CardActionArea> */}
                         <CardContent>
                             <form noValidate autoComplete="off">
                                 <FormControl>
@@ -226,6 +230,7 @@ export default class CreateInfo extends Component {
                                             id="date-picker-dialog"
                                             label="Date picker dialog"
                                             format="dd/MM/yyyy"
+                                            value={this.state.date}
                                             onChange={this.onChangeDate}
                                             KeyboardButtonProps={{
                                                 'aria-label': 'change date',
@@ -235,7 +240,7 @@ export default class CreateInfo extends Component {
                                 </MuiPickersUtilsProvider>
                             </form>
                         </CardContent>
-                    </CardActionArea>
+                    {/* </CardActionArea> */}
 
                     <CardActions style={{ padding: '10px', display: 'flex'}}>
                         <div style={{ marginLeft: "auto" }}>
@@ -245,7 +250,7 @@ export default class CreateInfo extends Component {
                                 type="submit"
                                 variant="contained"
                                 value="Create Info Log"
-                                onSubmit={this.onSubmit}
+                                onClick={this.onSubmit}
                             >
                                 Submit
                             </Button>
@@ -258,3 +263,4 @@ export default class CreateInfo extends Component {
 }
 
 // export default withStyles(styles)(CreateInfo)   
+export default withRouter(CreateInfo)
