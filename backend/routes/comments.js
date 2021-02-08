@@ -12,12 +12,14 @@ router.route('/add').post((req, res) => {
     // const info_id = req.body.comment_id;
     // const knowledge_id = req.body.comment_id;
     const comments = req.body.comments;
+    const date = Date.parse(req.body.date);
 
     const newComments = new Comments({
         username,
         // info_id,
         // knowledge_id,
-        comments
+        comments,
+        date
     });
 
     newComments.save()
@@ -42,6 +44,7 @@ router.route('/update/:id').post((req, res) => {
         .then(comments => {
             comments.username = req.body.username;
             comments.comments = req.body.comments;
+            comments.date = Date.parse(req.body.date);
 
             comments.save()
                 .then(() => res.json('Comment Updated!'))
