@@ -21,11 +21,13 @@ const infoRouter = require('./routes/info');
 const usersRouter = require('./routes/users');
 const noteRouter = require('./routes/note');
 const knowledgeRouter = require('./routes/knowledge');
+const commentsRouter = require('./routes/comments');
 
 app.use('/info', infoRouter);
 app.use('/users', usersRouter);
 app.use('/note', noteRouter);
 app.use('/knowledge', knowledgeRouter);
+app.use('/comments', commentsRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
