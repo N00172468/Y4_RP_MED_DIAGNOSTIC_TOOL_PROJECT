@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-  } from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
+// import {
+//     MuiPickersUtilsProvider,
+//     KeyboardDatePicker,
+//   } from '@material-ui/pickers';
 
 import {
     // createStyles,
     // withStyles,
     Card,
-    CardActionArea,
+    // CardActionArea,
     CardActions,
     CardContent,
     Button,
     Typography,
-    InputLabel,
+    // InputLabel,
     // MenuItem,
-    Select,
-    FormControl,
+    // Select,
+    // FormControl,
     TextField
 
 } from "@material-ui/core";
@@ -32,18 +32,22 @@ class EditInfo extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.onChangeExperience = this.onChangeExperience.bind(this);
-        this.onChangeDate = this.onChangeDate.bind(this);
+        // this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeUsername = this.onChangeTitle.bind(this);
+        this.onChangeUsername = this.onChangeBody.bind(this);
+        // this.onChangeDescription = this.onChangeDescription.bind(this);
+        // this.onChangeExperience = this.onChangeExperience.bind(this);
+        // this.onChangeDate = this.onChangeDate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.handleUserSelect = this.handleUserSelect.bind(this)
 
         this.state = {
-            username: '',
-            description: '',
-            experience: 0,
-            date: new Date(),
+            title: '',
+            body: '',
+            // username: '',
+            // description: '',
+            // experience: 0,
+            // date: new Date(),
 
             users: [],
             loading: true
@@ -59,10 +63,12 @@ class EditInfo extends Component {
             .then(response => {
                 console.log('respponse!', response)
                 this.setState({
-                    username: response.data.username,
-                    description: response.data.description,
-                    experience: response.data.experience,
-                    date: new Date(response.data.date)
+                    title: response.data.title,
+                    body: response.data.body,
+                    // username: response.data.username,
+                    // description: response.data.description,
+                    // experience: response.data.experience,
+                    // date: new Date(response.data.date)
                 })
             })
             .catch(function (error) {
@@ -87,38 +93,52 @@ class EditInfo extends Component {
         // this,set
     }
 
-    onChangeUsername(e) {
+    onChangeTitle(e) {
         this.setState({
-            username: e.target.value
+            title: e.target.value
         });
     };
 
-    onChangeDescription(e) {
+    onChangeBody(e) {
         this.setState({
-            description: e.target.value
+            body: e.target.value
         });
     };
 
-    onChangeExperience(e) {
-        this.setState({
-            experience: e.target.value
-        });
-    };
+    // onChangeUsername(e) {
+    //     this.setState({
+    //         username: e.target.value
+    //     });
+    // };
 
-    onChangeDate(date) {
-        this.setState({
-            date: date
-        });
-    };
+    // onChangeDescription(e) {
+    //     this.setState({
+    //         description: e.target.value
+    //     });
+    // };
+
+    // onChangeExperience(e) {
+    //     this.setState({
+    //         experience: e.target.value
+    //     });
+    // };
+
+    // onChangeDate(date) {
+    //     this.setState({
+    //         date: date
+    //     });
+    // };
 
     onSubmit(e) {
         e.preventDefault();
 
         const info = {
-            username: this.state.username,
-            description: this.state.description,
-            experience: this.state.experience,
-            date: this.state.date
+            title: this.state.title,
+            body: this.state.body,
+            // username: this.state.username,
+            // description: this.state.description,
+            // experience: this.state.experience,
+            // date: this.state.date
         };
 
         console.log(info);
@@ -142,7 +162,7 @@ class EditInfo extends Component {
                     component="h2" 
                     style={{ fontFamily: "Raleway", textTransform: "uppercase", letterSpacing: "3px" }}
                 >
-                    Add Information
+                    Edit Your Knowledge
                 </Typography>
 
                 {/* <CreateInfoCard classes={this.props.classes} /> */}
@@ -151,7 +171,7 @@ class EditInfo extends Component {
                     {/* <CardActionArea> */}
                         <CardContent>
                             <form noValidate autoComplete="off">
-                                <FormControl>
+                                {/* <FormControl>
                                     <InputLabel id="demo-simple-select-label">User</InputLabel>  
 
                                     <Select
@@ -175,18 +195,29 @@ class EditInfo extends Component {
                                             })
                                         };
                                     </Select>
-                                </FormControl>
+                                </FormControl> */}
 
                                 <TextField 
                                     fullWidth
                                     id="standard-basic" 
-                                    label="Description" 
-                                    value={this.state.description}
-                                    onChange={this.onChangeDescription}
+                                    label="Title" 
+                                    value={this.state.title}
+                                    onChange={this.onChangeTitle}
+                                    style={{ marginBottom: "35px" }}
+                                />
+                                
+                                <TextField 
+                                    fullWidth
+                                    multiline
+                                    rows={20}
+                                    id="standard-basic" 
+                                    label="Information" 
+                                    value={this.state.body}
+                                    onChange={this.onChangeBody}
                                     style={{ marginBottom: "35px" }}
                                 />
 
-                                <TextField 
+                                {/* <TextField 
                                     id="standard-basic" 
                                     label="Experience (In Years)" 
                                     value={this.state.experience}
@@ -207,7 +238,7 @@ class EditInfo extends Component {
                                             }}
                                         />
                                     </div>
-                                </MuiPickersUtilsProvider>
+                                </MuiPickersUtilsProvider> */}
                             </form>
                         </CardContent>
                     {/* </CardActionArea> */}

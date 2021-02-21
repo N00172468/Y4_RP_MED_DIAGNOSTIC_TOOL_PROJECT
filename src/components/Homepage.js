@@ -33,12 +33,20 @@ const Info = props => (
     <Card className={props.classes.root} >
         <CardActionArea>
             <CardContent>
-                <Typography
+                {/* <Typography
                     variant="h5" 
                     color="textSecondary"
                     component="h5"    
                 >
                     {props.info.username}
+                </Typography> */}
+                
+                <Typography
+                    variant="h5" 
+                    color="textSecondary"
+                    component="h5"    
+                >
+                    {props.info.title}
                 </Typography>
 
                 <Typography
@@ -46,10 +54,10 @@ const Info = props => (
                     color="textSecondary"
                     component="p"    
                 >
-                    Description: {props.info.description}
+                    {props.info.body}
                 </Typography>
 
-                <Typography
+                {/* <Typography
                     variant="body2" 
                     color="textSecondary"
                     component="p"    
@@ -63,12 +71,24 @@ const Info = props => (
                     component="p"    
                 >
                     Date: {props.info.date.substring(0,10)}
-                </Typography>
+                </Typography> */}
             </CardContent>
         </CardActionArea>
 
         <CardActions style={{ padding: '10px', display: 'flex'}}>
             <div style={{ marginLeft: "auto" }}>
+                <Button 
+                    size="large" 
+                    color="info"
+                    type="submit"
+                    variant="contained"
+                    className={props.classes.button}
+                >
+                    <Link to={"/view/" + props.info._id} style ={{ textDecoration: "none" }}>
+                        View
+                    </Link> 
+                </Button>
+                
                 <Button 
                     size="large" 
                     color="primary"

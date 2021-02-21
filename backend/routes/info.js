@@ -9,15 +9,18 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const username = req.body.username;
-    const description = req.body.description;
-    const experience = Number(req.body.experience);
-    const date = Date.parse(req.body.date);
+    const title = req.body.title;
+    const body = req.body.body;
+    // const experience = Number(req.body.experience);
+    // const date = Date.parse(req.body.date);
 
     const newInfo = new Info({
         username,
-        description,
-        experience,
-        date
+        title,
+        // description,
+        body,
+        // experience,
+        // date
     });
 
     newInfo.save()
@@ -41,9 +44,11 @@ router.route('/update/:id').post((req, res) => {
     Info.findById(req.params.id)
         .then(info => {
             info.username = req.body.username;
-            info.description = req.body.description;
-            info.experience = Number(req.body.experience);
-            info.date = Date.parse(req.body.date);
+            info.title = req.body.title;
+            info.body = req.body.body;
+            // info.description = req.body.description;
+            // info.experience = Number(req.body.experience);
+            // info.date = Date.parse(req.body.date);
 
             info.save()
                 .then(() => res.json('Info Updated!'))

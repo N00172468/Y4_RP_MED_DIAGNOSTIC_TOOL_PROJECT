@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-  } from '@material-ui/pickers';
+// import DateFnsUtils from '@date-io/date-fns';
+// import {
+//     MuiPickersUtilsProvider,
+//     KeyboardDatePicker,
+//   } from '@material-ui/pickers';
 
 import {
-    createStyles,
-    withStyles,
+    // createStyles,
+    // withStyles,
     Card,
-    CardActionArea,
+    // CardActionArea,
     CardActions,
     CardContent,
     Button,
     Typography,
-    InputLabel,
-    MenuItem,
-    Select,
-    FormControl,
+    // InputLabel,
+    // MenuItem,
+    // Select,
+    // FormControl,
     TextField
 
 } from "@material-ui/core";
@@ -30,24 +30,24 @@ import {withRouter} from 'react-router-dom';
 
 
 
-const styles = (theme) =>
-  createStyles({
-    root: {
-      backgroundColor: theme.palette.secondary.main,
-      margin: theme.spacing(2)
-    },
-    button: {
-      margin: `0px ${theme.spacing(1)}px`
+// const styles = (theme) =>
+//   createStyles({
+//     root: {
+//       backgroundColor: theme.palette.secondary.main,
+//       margin: theme.spacing(2)
+//     },
+//     button: {
+//       margin: `0px ${theme.spacing(1)}px`
 
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    selectEmpty: {
-    marginTop: theme.spacing(2),
-    },
-  });
+//     },
+//     formControl: {
+//         margin: theme.spacing(1),
+//         minWidth: 120,
+//     },
+//     selectEmpty: {
+//     marginTop: theme.spacing(2),
+//     },
+//   });
 
 // const CreateInfoCard = props => (
 //     <Card className={props.classes.root} >
@@ -89,17 +89,20 @@ class CreateInfo extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.onChangeExperience = this.onChangeExperience.bind(this);
-        this.onChangeDate = this.onChangeDate.bind(this);
+        // this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeUsername = this.onChangeTitle.bind(this);
+        this.onChangeDescription = this.onChangeBody.bind(this);
+        // this.onChangeDescription = this.onChangeDescription.bind(this);
+        // this.onChangeExperience = this.onChangeExperience.bind(this);
+        // this.onChangeDate = this.onChangeDate.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            username: '',
-            description: '',
-            experience: 0,
-            date: new Date(),
+            // username: '',
+            title: '',
+            body: '',
+            // experience: 0,
+            // date: new Date(),
 
             users: []
         };
@@ -122,38 +125,51 @@ class CreateInfo extends Component {
             });
     };
 
-    onChangeUsername(e) {
+    // onChangeUsername(e) {
+    //     this.setState({
+    //         username: e.target.value
+    //     });
+    // };
+
+    onChangeTitle(e) {
         this.setState({
-            username: e.target.value
+            title: e.target.value
         });
     };
 
-    onChangeDescription(e) {
+    onChangeBody(e) {
         this.setState({
-            description: e.target.value
+            body: e.target.value
         });
     };
 
-    onChangeExperience(e) {
-        this.setState({
-            experience: e.target.value
-        });
-    };
+    // onChangeDescription(e) {
+    //     this.setState({
+    //         description: e.target.value
+    //     });
+    // };
 
-    onChangeDate(date) {
-        this.setState({
-            date: date
-        });
-    };
+    // onChangeExperience(e) {
+    //     this.setState({
+    //         experience: e.target.value
+    //     });
+    // };
+
+    // onChangeDate(date) {
+    //     this.setState({
+    //         date: date
+    //     });
+    // };
 
     onSubmit(e) {
         e.preventDefault();
 
         const info = {
-            username: this.state.username,
-            description: this.state.description,
-            experience: this.state.experience,
-            date: this.state.date
+            // username: this.state.username,
+            title: this.state.title,
+            body: this.state.body,
+            // experience: this.state.experience,
+            // date: this.state.date
         };
 
         // console.log(info);
@@ -174,7 +190,7 @@ class CreateInfo extends Component {
                     component="h2" 
                     style={{ fontFamily: "Raleway", textTransform: "uppercase", letterSpacing: "3px" }}
                 >
-                    Add Information
+                    Publicise Your Knowledge
                 </Typography>
 
                 {/* <CreateInfoCard classes={this.props.classes} /> */}
@@ -183,7 +199,7 @@ class CreateInfo extends Component {
                     {/* <CardActionArea> */}
                         <CardContent>
                             <form noValidate autoComplete="off">
-                                <FormControl>
+                                {/* <FormControl>
                                     <InputLabel id="demo-simple-select-label">User</InputLabel>  
 
                                     <Select
@@ -204,18 +220,29 @@ class CreateInfo extends Component {
                                             })
                                         };
                                     </Select>
-                                </FormControl>
+                                </FormControl> */}
 
                                 <TextField 
                                     fullWidth
                                     id="standard-basic" 
-                                    label="Description" 
-                                    value={this.state.description}
-                                    onChange={this.onChangeDescription}
+                                    label="Title" 
+                                    value={this.state.title}
+                                    onChange={this.onChangeTitle}
+                                    style={{ marginBottom: "35px" }}
+                                />
+                                
+                                <TextField 
+                                    fullWidth
+                                    multiline
+                                    rows={20}
+                                    id="standard-basic" 
+                                    label="Information" 
+                                    value={this.state.body}
+                                    onChange={this.onChangeBody}
                                     style={{ marginBottom: "35px" }}
                                 />
 
-                                <TextField 
+                                {/* <TextField 
                                     id="standard-basic" 
                                     label="Experience (In Years)" 
                                     value={this.state.experience}
@@ -237,7 +264,7 @@ class CreateInfo extends Component {
                                         }}
                                         />
                                     </div>
-                                </MuiPickersUtilsProvider>
+                                </MuiPickersUtilsProvider> */}
                             </form>
                         </CardContent>
                     {/* </CardActionArea> */}
