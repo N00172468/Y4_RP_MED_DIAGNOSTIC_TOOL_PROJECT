@@ -6,13 +6,12 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-// import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 
 import Typography from '@material-ui/core/Typography';
 import {
     createStyles,
-withStyles,
+    withStyles,
 } from "@material-ui/core";
 
 import './../App.css'
@@ -33,14 +32,6 @@ const Info = props => (
     <Card className={props.classes.root} >
         <CardActionArea>
             <CardContent>
-                {/* <Typography
-                    variant="h5" 
-                    color="textSecondary"
-                    component="h5"    
-                >
-                    {props.info.username}
-                </Typography> */}
-                
                 <Typography
                     variant="h5" 
                     color="textSecondary"
@@ -56,22 +47,6 @@ const Info = props => (
                 >
                     {props.info.body}
                 </Typography>
-
-                {/* <Typography
-                    variant="body2" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    Experience: {props.info.experience}
-                </Typography>
-
-                <Typography
-                    variant="body2" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    Date: {props.info.date.substring(0,10)}
-                </Typography> */}
             </CardContent>
         </CardActionArea>
 

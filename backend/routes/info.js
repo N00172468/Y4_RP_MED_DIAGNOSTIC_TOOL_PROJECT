@@ -10,17 +10,24 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
     const username = req.body.username;
     const title = req.body.title;
-    const body = req.body.body;
-    // const experience = Number(req.body.experience);
-    // const date = Date.parse(req.body.date);
+    // const body = req.body.body;
+    const overview = req.body.overview;
+    const symptoms = req.body.symptoms;
+    const causes = req.body.causes;
+    const risk_factors = req.body.risk_factors;
+    const complications = req.body.complications;
+    const prevention = req.body.prevention;
 
     const newInfo = new Info({
         username,
         title,
-        // description,
-        body,
-        // experience,
-        // date
+        // body,
+        overview,
+        symptoms,
+        causes,
+        risk_factors,
+        complications,
+        prevention
     });
 
     newInfo.save()
@@ -45,10 +52,13 @@ router.route('/update/:id').post((req, res) => {
         .then(info => {
             info.username = req.body.username;
             info.title = req.body.title;
-            info.body = req.body.body;
-            // info.description = req.body.description;
-            // info.experience = Number(req.body.experience);
-            // info.date = Date.parse(req.body.date);
+            // info.body = req.body.body;
+            info.overview = req.body.overview;
+            info.symptoms = req.body.symptoms;
+            info.causes = req.body.causes;
+            info.risk_factors = req.body.risk_factors;
+            info.complications = req.body.complications;
+            info.prevention = req.body.prevention;
 
             info.save()
                 .then(() => res.json('Info Updated!'))
