@@ -49,7 +49,9 @@ body {
 .cardRoot {
   /* max-width: 1000px; */
   /* margin-left: 13%; */
-  margin-top: 3%;
-  width: 85%;
+  /* margin-top: 3%; */
+  /* width: 85%; */
+  min-width: 350px;
+  width: 70%;
 }
 /* -------------------------- */

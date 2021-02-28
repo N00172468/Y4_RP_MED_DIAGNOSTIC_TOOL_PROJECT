@@ -32,7 +32,8 @@ import {
   // ListItemIcon
 } from "@material-ui/icons";
 
-const drawerWidth = 60;
+// const drawerWidth = 60;
+const drawerWidth = 200;
 
 const styles = (theme) => 
 createStyles({
@@ -181,7 +182,7 @@ const Navigation = (props) => {
         </Link>
 
         <Link to="/create" style ={{ textDecoration: "none" }}>
-          {['Create Info'].map((text, index) => (
+          {['Publicise Your Knowledge'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index = <AddCircleOutline />}
@@ -192,7 +193,7 @@ const Navigation = (props) => {
           ))}
         </Link>
 
-        <Link to="/User" style ={{ textDecoration: "none" }}>
+        {/* <Link to="/User" style ={{ textDecoration: "none" }}>
           {['Add User'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -202,7 +203,7 @@ const Navigation = (props) => {
               <ListItemText primary={text} />
             </ListItem>
           ))}
-        </Link>
+        </Link> */}
       
         <Link to="/" style ={{ textDecoration: "none" }}>
           {['Bookmarks'].map((text, index) => (
