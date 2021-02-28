@@ -81,7 +81,12 @@ class ViewInfo extends Component {
 
         this.state = {
             title: '',
-            body: '',
+            overview: '',
+            symptoms: '',
+            causes: '',
+            risk_factors: '',
+            complications: '',
+            prevention: '',
             users: [],
             loading: true,
             info: []
@@ -96,7 +101,12 @@ class ViewInfo extends Component {
                 console.log('response!', response)
                 this.setState({
                     title: response.data.title,
-                    body: response.data.body,
+                    overview: response.data.overview,
+                    symptoms: response.data.symptoms,
+                    causes: response.data.causes,
+                    risk_factors: response.data.risk_factors,
+                    complications: response.data.complications,
+                    prevention: response.data.prevention,
                 })
             })
             .catch(function (error) {
@@ -145,12 +155,112 @@ class ViewInfo extends Component {
                     {this.state.title}
                 </Typography>
 
+                <br />
+
                 <Typography
-                    variant="body2" 
+                    variant="h5" 
                     color="textSecondary"
                     component="p"    
                 >
-                    {this.state.body}
+                    Overview:
+                </Typography>
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.overview}
+                </Typography>
+
+                <br />
+
+                <Typography
+                    variant="h5" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    Symptoms:
+                </Typography>
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.symptoms}
+                </Typography>
+
+                <br />
+
+                <Typography
+                    variant="h5" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    Causes:
+                </Typography>
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.causes}
+                </Typography>
+
+                <br />
+
+                <Typography
+                    variant="h5" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    Risk Factors:
+                </Typography>
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.risk_factors}
+                </Typography>
+
+                <br />
+
+                <Typography
+                    variant="h5" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    Complications:
+                </Typography>
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.complications}
+                </Typography>
+
+                <br />
+
+                <Typography
+                    variant="h5" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    Prevention:
+                </Typography>
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.prevention}
                 </Typography>
 
                 {this.state.info.map(currentInfo => {

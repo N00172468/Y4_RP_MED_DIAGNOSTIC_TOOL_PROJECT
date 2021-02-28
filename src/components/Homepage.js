@@ -45,7 +45,7 @@ const Info = props => (
                     color="textSecondary"
                     component="p"    
                 >
-                    {props.info.body}
+                    {props.info.overview}
                 </Typography>
             </CardContent>
         </CardActionArea>
