@@ -249,6 +249,7 @@ const Navigation = (props) => {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
+  // const onSearchChange = this.props.onSearchChange;
   // const container = this.window !== undefined ? () => window().document.body : undefined;
 
   return (
@@ -265,6 +266,7 @@ const Navigation = (props) => {
                 <div className={props.classes.searchIcon}>
                   <Search />
                 </div>
+
                 <InputBase
                   placeholder="Search…"
                   className={
@@ -272,8 +274,10 @@ const Navigation = (props) => {
                     props.classes.inputInput
                   }
                   inputProps={{ 'aria-label': 'search' }}
+                  // onChange={onSearchChange}
                 />
               </div>
+              
               <IconButton
                 color="inherit"
                 aria-label="open drawer"

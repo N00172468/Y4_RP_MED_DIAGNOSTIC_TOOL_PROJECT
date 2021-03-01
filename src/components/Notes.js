@@ -136,7 +136,22 @@ class NotesPage extends Component {
                     style={{ fontFamily: "Raleway", textTransform: "uppercase", letterSpacing: "3px" }}
                 >
                     Your Notes
+                
+                    {/* <div style={{ padding: '10px', display: 'flex'}}> */}
+                        <Button 
+                            size="large" 
+                            color="primary"
+                            type="submit"
+                            variant="contained"
+                            style={{ marginLeft: "35px" }}
+                        >
+                            <Link to={"/create/note"} style ={{ textDecoration: "none", float: "right" }}>
+                                Create Note
+                            </Link> 
+                        </Button>
+                    {/* </div> */}
                 </Typography>
+
                 
                 {this.state.note.map(currentNote => {
                     return <Note note={currentNote} deleteNote={this.deleteNote} key={currentNote._id} classes={this.props.classes}/>;
