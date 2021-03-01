@@ -126,7 +126,7 @@ const Note = props => (
                     variant="contained"
                     className={props.classes.button}
                 >
-                    <Link to={"/view/" + props.note._id} style ={{ textDecoration: "none" }}>
+                    <Link to={"/view/note/" + props.note._id} style ={{ textDecoration: "none" }}>
                         View
                     </Link> 
                 </Button>

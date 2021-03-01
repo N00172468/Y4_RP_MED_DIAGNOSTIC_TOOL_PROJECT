@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
+import {withRouter, Link} from 'react-router-dom';
+import axios from 'axios'
 
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import 'date-fns';
+// import DateFnsUtils from '@date-io/date-fns';
+// import {
+//     MuiPickersUtilsProvider,
+//     KeyboardDatePicker,
+//   } from '@material-ui/pickers';
 
-import Typography from '@material-ui/core/Typography';
 import {
     createStyles,
     withStyles,
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    Button,
+    Typography,
+    // InputLabel,
+    // MenuItem,
+    // Select,
+    // FormControl,
+    TextField
+
 } from "@material-ui/core";
 
 import './../App.css'
@@ -28,28 +40,8 @@ const styles = (theme) =>
     }
   });
   
-const Note = props => (
+  const Note = props => (
     <Card className={props.classes.root} >
-        <CardActionArea>
-            <CardContent>
-                <Typography
-                    variant="h5" 
-                    color="textSecondary"
-                    component="h5"    
-                >
-                    {props.note.title}
-                </Typography>
-
-                <Typography
-                    variant="body2" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {props.note.body}
-                </Typography>
-            </CardContent>
-        </CardActionArea>
-
         <CardActions style={{ padding: '10px', display: 'flex'}}>
             <div style={{ marginLeft: "auto" }}>
                 <Button 
@@ -95,27 +87,52 @@ const Note = props => (
     </Card>
 );
 
-class NotesPage extends Component {
+class ViewNote extends Component {
     constructor(props) {
         super(props);
 
-        this.deleteNote = this.deleteNote.bind(this);
-
         this.state = {
+            title: '',
+            body: '',
+            stickyNote: '',
+            flashcard: '',
+            image: '',
+            users: [],
+            loading: true,
             note: []
         };
+
+        this.deleteNote = this.deleteNote.bind(this);
     };
 
     componentDidMount() {
-        axios.get('http://localhost:5000/note/')
+        axios.get('http://localhost:5000/note/' + this.props.match.params.id)
             .then(response => {
-                this.setState({ note: response.data })
+                console.log('response!', response)
+                this.setState({
+                    title: response.data.title,
+                    body: response.data.body,
+                    stickyNote: response.data.stickyNote,
+                    flashcard: response.data.flashcard,
+                    image: response.data.image,
+                })
             })
-            .catch((error) => {
+            .catch(function (error) {
                 console.log(error);
             })
+
+        axios.get('http://localhost:5000/users/')
+            .then(response => {
+                if (response.data.length > 0) {
+                    this.setState({
+                        users: response.data,
+                        loading: false
+                    });
+                }
+            }
+        );
     };
-    
+
     deleteNote(id) {
         axios.delete('http://localhost:5000/note/' + id)
             .then(res => console.log(res.data)
@@ -126,7 +143,15 @@ class NotesPage extends Component {
         });
     };
 
+    noteList() {
+        return this.state.note.map(currentNote => {
+            return <Note note={currentNote} deleteNote={this.deleteNote} key={currentNote._id}/>;
+        })
+    };
+
     render() {
+        if(this.state.loading) return <Typography>Loading</Typography>
+
         return (
             <div className="cardRoot">
                 <Typography 
@@ -135,17 +160,56 @@ class NotesPage extends Component {
                     component="h2" 
                     style={{ fontFamily: "Raleway", textTransform: "uppercase", letterSpacing: "3px" }}
                 >
-                    Your Notes
+                    {this.state.title}
                 </Typography>
-                
+
+                <br />
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.body}
+                </Typography>
+
+                <br />
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.stickyNote}
+                </Typography>
+
+                <br />
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.flashcard}
+                </Typography>
+
+                <br />
+
+                <Typography
+                    variant="body1" 
+                    color="textSecondary"
+                    component="p"    
+                >
+                    {this.state.image}
+                </Typography>
+
                 {this.state.note.map(currentNote => {
                     return <Note note={currentNote} deleteNote={this.deleteNote} key={currentNote._id} classes={this.props.classes}/>;
                     })
                 }
             </div>
-        );
-    }
+        )
+    } 
 }
 
-
-export default withStyles(styles)(NotesPage)                             
+export default withRouter(ViewNote)

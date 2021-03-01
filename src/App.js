@@ -10,6 +10,7 @@ import EditInfo from "./components/EditInfo";
 import CreateUser from "./components/CreateUser";
 
 import NotesPage from "./components/Notes";
+import ViewNote from "./components/ViewNote";
 
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -32,6 +33,7 @@ function App() {
               <Route path="/user" component={CreateUser} />
 
               <Route path="/note" component={NotesPage} />
+              <Route path="/view/note/:id" component={ViewNote} />
             </Switch>
           </Navigation>
         </div>
