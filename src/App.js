@@ -8,6 +8,7 @@ import CreateInfo from "./components/CreateInfo";
 import ViewInfo from "./components/ViewInfo";
 import EditInfo from "./components/EditInfo";
 import CreateUser from "./components/CreateUser";
+
 import NotesPage from "./components/Notes";
 
 import { MuiThemeProvider } from "@material-ui/core/styles";
