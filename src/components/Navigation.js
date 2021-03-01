@@ -28,7 +28,8 @@ import {
   Face,
   TurnedInNot,
   Widgets,
-  Search
+  Search,
+  LibraryBooksOutlined
   // ListItemIcon
 } from "@material-ui/icons";
 
@@ -205,6 +206,18 @@ const Navigation = (props) => {
           ))}
         </Link> */}
       
+        <Link to="/Note" style ={{ textDecoration: "none" }}>
+          {['Your Notes'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index = <LibraryBooksOutlined />}
+              </ListItemIcon>
+
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </Link>
+
         <Link to="/" style ={{ textDecoration: "none" }}>
           {['Bookmarks'].map((text, index) => (
             <ListItem button key={text}>

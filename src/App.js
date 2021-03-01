@@ -8,8 +8,9 @@ import CreateInfo from "./components/CreateInfo";
 import ViewInfo from "./components/ViewInfo";
 import EditInfo from "./components/EditInfo";
 import CreateUser from "./components/CreateUser";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import NotesPage from "./components/Notes";
 
+import { MuiThemeProvider } from "@material-ui/core/styles";
 
 import theme from "./theme";
 import './App.css';
@@ -28,6 +29,8 @@ function App() {
               <Route path="/view/:id" component={ViewInfo} />
               <Route path="/edit/:id" component={EditInfo} />
               <Route path="/user" component={CreateUser} />
+
+              <Route path="/note" component={NotesPage} />
             </Switch>
           </Navigation>
         </div>
