@@ -218,11 +218,23 @@ const Navigation = (props) => {
           ))}
         </Link>
 
-        <Link to="/" style ={{ textDecoration: "none" }}>
+        <Link to="/Bookmarks" style ={{ textDecoration: "none" }}>
           {['Bookmarks'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index = <TurnedInNot />}
+              </ListItemIcon>
+
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </Link>
+
+        <Link to="/Symptom" style ={{ textDecoration: "none" }}>
+          {['Symptom'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index = <LibraryBooksOutlined />}
               </ListItemIcon>
 
               <ListItemText primary={text} />

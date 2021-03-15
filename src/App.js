@@ -3,15 +3,20 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Nav from "./components/Nav";
 import Navigation from "./components/Navigation";
+
+import CreateUser from "./components/CreateUser";
+
 import Homepage from "./components/Homepage";
 import CreateInfo from "./components/CreateInfo";
 import ViewInfo from "./components/ViewInfo";
 import EditInfo from "./components/EditInfo";
-import CreateUser from "./components/CreateUser";
 
 import NotesPage from "./components/Notes";
 import CreateNote from "./components/CreateNote";
 import ViewNote from "./components/ViewNote";
+
+import BookmarksPage from "./components/BookmarksPage";
+import SymptomsPage from "./components/Symptoms"
 
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -36,6 +41,9 @@ function App() {
               <Route path="/note" component={NotesPage} />
               <Route path="/create/note" component={CreateNote} />
               <Route path="/view/note/:id" component={ViewNote} />
+              
+              <Route path="/bookmarks" component={BookmarksPage} />
+              <Route path="/symptom" component={SymptomsPage} />
             </Switch>
           </Navigation>
         </div>
