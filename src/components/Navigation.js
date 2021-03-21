@@ -161,6 +161,11 @@ const Navigation = (props) => {
   
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [filter, setFilter] = React.useState("");
+
+  const handleSearchChange = (e) => {
+    setFilter(e.target.value);
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -270,7 +275,7 @@ const Navigation = (props) => {
     <div className={classes.root}>
           <CssBaseline />
 
-          <AppBar position="fixed" className={props.classes.appBar}>
+          <AppBar position="fixed" className={props.classes.appBar} onChange={handleSearchChange}>
             <Toolbar className={classes.appBarToolbar}>
      
               
