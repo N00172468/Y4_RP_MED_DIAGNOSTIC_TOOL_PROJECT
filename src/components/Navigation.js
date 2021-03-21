@@ -19,7 +19,8 @@ import {
   Drawer,
   CssBaseline,
   InputBase,
-  fade
+  fade,
+  TextField
 } from "@material-ui/core";
 import {
   Menu,
@@ -145,7 +146,8 @@ createStyles({
     width: '100%',
 
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      // width: '12ch',
+      width: '112ch',
 
       '&:focus': {
         width: '20ch',
@@ -277,6 +279,7 @@ const Navigation = (props) => {
               <div className={props.classes.search} edge="start">
                 <div className={props.classes.searchIcon}>
                   <Search />
+                  {/* <TextField /> */}
                 </div>
 
                 <InputBase
