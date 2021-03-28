@@ -200,10 +200,6 @@ const Navigation = (props) => {
       >
         <Toolbar className={classes.appBarToolbar}>
           <div className={props.classes.search} edge="start">
-            {/* <div className={props.classes.searchIcon}> */}
-            {/* <SearchIcon /> */}
-            {/* <TextField /> */}
-            {/* hello */}
             <Search />
 
             {/* </div> */}
