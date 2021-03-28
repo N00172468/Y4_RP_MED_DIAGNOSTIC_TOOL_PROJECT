@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import {withRouter, Link} from 'react-router-dom';
-import axios from 'axios'
+import React, { Component } from "react";
+import { withRouter, Link } from "react-router-dom";
+import axios from "axios";
 
 import {
-    // createStyles,
-    // withStyles,
-    Card,
-    // CardActionArea,
-    CardActions,
-    // CardContent,
-    Button,
-    Typography,
-    // TextField
-
+  // createStyles,
+  // withStyles,
+  Card,
+  // CardActionArea,
+  CardActions,
+  // CardContent,
+  Button,
+  Typography,
+  // TextField
 } from "@material-ui/core";
 
-import './../App.css'
+import "./../App.css";
 
 // const styles = (theme) =>
 //   createStyles({
@@ -28,264 +27,207 @@ import './../App.css'
 
 //     }
 //   });
-  
-const Info = props => (
-    <Card className={props.classes.root} >
-        <CardActions style={{ padding: '10px', display: 'flex'}}>
-            <div style={{ marginLeft: "auto" }}>
-                <Button 
-                    size="large" 
-                    color="primary"
-                    type="submit"
-                    variant="contained"
-                    className={props.classes.button}
-                >
-                    <Link to={"/edit/" + props.info._id} style ={{ textDecoration: "none" }}>
-                        Edit
-                    </Link> 
-                </Button>
 
-                <Button 
-                    size="large" 
-                    className={props.classes.button}
-                    color="secondary"
-                    type="submit"
-                    value="Delete"
-                    variant="contained"
-                    onClick={() => { props.deleteInfo(props.info._id) }}
-                    style ={{ textDecoration: "none" }}
-                >
-                    
-                    Delete
-                    
-                </Button>
-            </div>
-        </CardActions>
-    </Card>
+const Info = (props) => (
+  <Card className={props.classes.root}>
+    <CardActions style={{ padding: "10px", display: "flex" }}>
+      <div style={{ marginLeft: "auto" }}>
+        <Button
+          size="large"
+          color="primary"
+          type="submit"
+          variant="contained"
+          className={props.classes.button}
+        >
+          <Link
+            to={"/edit/" + props.info._id}
+            style={{ textDecoration: "none" }}
+          >
+            Edit
+          </Link>
+        </Button>
+
+        <Button
+          size="large"
+          className={props.classes.button}
+          color="secondary"
+          type="submit"
+          value="Delete"
+          variant="contained"
+          onClick={() => {
+            props.deleteInfo(props.info._id);
+          }}
+          style={{ textDecoration: "none" }}
+        >
+          Delete
+        </Button>
+      </div>
+    </CardActions>
+  </Card>
 );
 
 class ViewInfo extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            title: '',
-            overview: '',
-            symptoms: '',
-            causes: '',
-            risk_factors: '',
-            complications: '',
-            prevention: '',
-            users: [],
-            loading: true,
-            info: []
-        };
-
-        this.deleteInfo = this.deleteInfo.bind(this);
+    this.state = {
+      title: "",
+      overview: "",
+      symptoms: "",
+      causes: "",
+      risk_factors: "",
+      complications: "",
+      prevention: "",
+      users: [],
+      loading: true,
+      info: [],
     };
 
-    componentDidMount() {
-        axios.get('http://localhost:5000/info/' + this.props.match.params.id)
-            .then(response => {
-                console.log('response!', response)
-                this.setState({
-                    title: response.data.title,
-                    overview: response.data.overview,
-                    symptoms: response.data.symptoms,
-                    causes: response.data.causes,
-                    risk_factors: response.data.risk_factors,
-                    complications: response.data.complications,
-                    prevention: response.data.prevention,
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+    this.deleteInfo = this.deleteInfo.bind(this);
+  }
 
-        axios.get('http://localhost:5000/users/')
-            .then(response => {
-                if (response.data.length > 0) {
-                    this.setState({
-                        users: response.data,
-                        loading: false
-                    });
-                }
-            }
-        );
-    };
-
-    deleteInfo(id) {
-        axios.delete('http://localhost:5000/info/' + id)
-            .then(res => console.log(res.data)
-        );
-        
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/info/" + this.props.match.params.id)
+      .then((response) => {
+        console.log("response!", response);
         this.setState({
-            info: this.state.info.filter(el => el._id !== id)
+          title: response.data.title,
+          overview: response.data.overview,
+          symptoms: response.data.symptoms,
+          causes: response.data.causes,
+          risk_factors: response.data.risk_factors,
+          complications: response.data.complications,
+          prevention: response.data.prevention,
         });
-    };
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-    infoList() {
-        return this.state.info.map(currentInfo => {
-            return <Info info={currentInfo} deleteInfo={this.deleteInfo} key={currentInfo._id}/>;
-        })
-    };
+    axios.get("http://localhost:5000/users/").then((response) => {
+      if (response.data.length > 0) {
+        this.setState({
+          users: response.data,
+          loading: false,
+        });
+      }
+    });
+  }
 
-    render() {
-        if(this.state.loading) return <Typography>Loading</Typography>
+  deleteInfo(id) {
+    axios
+      .delete("http://localhost:5000/info/" + id)
+      .then((res) => console.log(res.data));
 
-        return (
-            <div className="cardRoot">
-                <Typography 
-                    gutterBottom 
-                    variant="h5" 
-                    component="h2" 
-                    style={{ fontFamily: "Raleway", textTransform: "uppercase", letterSpacing: "3px" }}
-                >
-                    {this.state.title}
-                </Typography>
+    this.setState({
+      info: this.state.info.filter((el) => el._id !== id),
+    });
+  }
 
-                <br />
+  infoList() {
+    return this.state.info.map((currentInfo) => {
+      return (
+        <Info
+          info={currentInfo}
+          deleteInfo={this.deleteInfo}
+          key={currentInfo._id}
+        />
+      );
+    });
+  }
 
-                <Typography
-                    variant="h5" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    Overview:
-                </Typography>
+  render() {
+    if (this.state.loading) return <Typography>Loading</Typography>;
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.overview}
-                </Typography>
+    return (
+      <div className="cardRoot">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          style={{
+            fontFamily: "Raleway",
+            textTransform: "uppercase",
+            letterSpacing: "3px",
+          }}
+        >
+          {this.state.title}
+        </Typography>
 
-                <br />
+        <br />
 
-                <Typography
-                    variant="h5" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    Symptoms:
-                </Typography>
+        <Typography variant="h5" color="textSecondary" component="p">
+          Overview:
+        </Typography>
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.symptoms}
-                </Typography>
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.overview}
+        </Typography>
 
-                <br />
+        <br />
 
-                <Typography
-                    variant="h5" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    Causes:
-                </Typography>
+        <Typography variant="h5" color="textSecondary" component="p">
+          Symptoms:
+        </Typography>
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.causes}
-                </Typography>
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.symptoms}
+        </Typography>
 
-                <br />
+        <br />
 
-                <Typography
-                    variant="h5" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    Risk Factors:
-                </Typography>
+        <Typography variant="h5" color="textSecondary" component="p">
+          Causes:
+        </Typography>
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.risk_factors}
-                </Typography>
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.causes}
+        </Typography>
 
-                <br />
+        <br />
 
-                <Typography
-                    variant="h5" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    Complications:
-                </Typography>
+        <Typography variant="h5" color="textSecondary" component="p">
+          Risk Factors:
+        </Typography>
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.complications}
-                </Typography>
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.risk_factors}
+        </Typography>
 
-                <br />
+        <br />
 
-                <Typography
-                    variant="h5" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    Prevention:
-                </Typography>
+        <Typography variant="h5" color="textSecondary" component="p">
+          Complications:
+        </Typography>
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.prevention}
-                </Typography>
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.complications}
+        </Typography>
 
-                {this.state.info.map(currentInfo => {
-                    return <Info info={currentInfo} deleteInfo={this.deleteInfo} key={currentInfo._id} classes={this.props.classes}/>;
-                    })
-                }
+        <br />
 
-                {/* <Button 
-                    size="large" 
-                    color="primary"
-                    type="submit"
-                    variant="contained"
-                    className={this.state.button}
-                >
-                    <Link to={"/edit/" + this.state.info._id} style ={{ textDecoration: "none" }}>
-                        Edit
-                    </Link> 
-                </Button>
+        <Typography variant="h5" color="textSecondary" component="p">
+          Prevention:
+        </Typography>
 
-                <Button 
-                    size="large" 
-                    className={this.state.button}
-                    color="secondary"
-                    type="submit"
-                    value="Delete"
-                    variant="contained"
-                    onClick={() => { this.props.deleteInfo(this.props.info._id) }}
-                    style ={{ textDecoration: "none" }}
-                >
-                    
-                    Delete
-                    
-                </Button> */}
-            </div>
-        )
-    } 
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.prevention}
+        </Typography>
+
+        {this.state.info.map((currentInfo) => {
+          return (
+            <Info
+              info={currentInfo}
+              deleteInfo={this.deleteInfo}
+              key={currentInfo._id}
+              classes={this.props.classes}
+            />
+          );
+        })}
+      </div>
+    );
+  }
 }
 
-export default withRouter(ViewInfo)
+export default withRouter(ViewInfo);
