@@ -23,7 +23,7 @@ import {
 import {
   Menu,
   Home,
-  AddCircleOutline,
+  // AddCircleOutline,
   TurnedInNot,
   Widgets,
   LibraryBooksOutlined,
@@ -128,7 +128,7 @@ const Navigation = (props) => {
             ))}
           </Link>
 
-          <Link to="/create" style={{ textDecoration: "none" }}>
+          {/* <Link to="/create" style={{ textDecoration: "none" }}>
             {["Publicise Your Knowledge"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{(index = <AddCircleOutline />)}</ListItemIcon>
@@ -136,7 +136,7 @@ const Navigation = (props) => {
                 <ListItemText primary={text} />
               </ListItem>
             ))}
-          </Link>
+          </Link> */}
 
           <Link to="/Note" style={{ textDecoration: "none" }}>
             {["Your Notes"].map((text, index) => (
