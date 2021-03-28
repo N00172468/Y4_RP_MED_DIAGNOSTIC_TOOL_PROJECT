@@ -1,25 +1,24 @@
-import React, { Component } from 'react';
-import {withRouter, Link} from 'react-router-dom';
-import axios from 'axios'
+import React, { Component } from "react";
+import { withRouter, Link } from "react-router-dom";
+import axios from "axios";
 
 import {
-    // createStyles,
-    // withStyles,
-    Card,
-    // CardActionArea,
-    CardActions,
-    // CardContent,
-    Button,
-    Typography,
-    // InputLabel,
-    // MenuItem,
-    // Select,
-    // FormControl,
-    // TextField
-
+  // createStyles,
+  // withStyles,
+  Card,
+  // CardActionArea,
+  CardActions,
+  // CardContent,
+  Button,
+  Typography,
+  // InputLabel,
+  // MenuItem,
+  // Select,
+  // FormControl,
+  // TextField
 } from "@material-ui/core";
 
-import './../App.css'
+import "./../App.css";
 
 // const styles = (theme) =>
 //   createStyles({
@@ -32,177 +31,182 @@ import './../App.css'
 
 //     }
 //   });
-  
-  const Note = props => (
-    <Card className={props.classes.root} >
-        <CardActions style={{ padding: '10px', display: 'flex'}}>
-            <div style={{ marginLeft: "auto" }}>
-                <Button 
-                    size="large" 
-                    color="info"
-                    type="submit"
-                    variant="contained"
-                    className={props.classes.button}
-                >
-                    <Link to={"/view/note/" + props.note._id} style ={{ textDecoration: "none" }}>
-                        View
-                    </Link> 
-                </Button>
-                
-                <Button 
-                    size="large" 
-                    color="primary"
-                    type="submit"
-                    variant="contained"
-                    className={props.classes.button}
-                >
-                    <Link to={"/edit/" + props.note._id} style ={{ textDecoration: "none" }}>
-                        Edit
-                    </Link> 
-                </Button>
 
-                <Button 
-                    size="large" 
-                    className={props.classes.button}
-                    color="secondary"
-                    type="submit"
-                    value="Delete"
-                    variant="contained"
-                    onClick={() => { props.deleteNote(props.note._id) }}
-                    style ={{ textDecoration: "none" }}
-                >
-                    
-                        Delete
-                    
-                </Button>
-            </div>
-        </CardActions>
-    </Card>
+const Note = (props) => (
+  <Card className={props.classes.root}>
+    <CardActions style={{ padding: "10px", display: "flex" }}>
+      <div style={{ marginLeft: "auto" }}>
+        <Button
+          size="large"
+          color="info"
+          type="submit"
+          variant="contained"
+          className={props.classes.button}
+        >
+          <Link
+            to={"/view/note/" + props.note._id}
+            style={{ textDecoration: "none" }}
+          >
+            View
+          </Link>
+        </Button>
+
+        <Button
+          size="large"
+          color="primary"
+          type="submit"
+          variant="contained"
+          className={props.classes.button}
+        >
+          <Link
+            to={"/edit/" + props.note._id}
+            style={{ textDecoration: "none" }}
+          >
+            Edit
+          </Link>
+        </Button>
+
+        <Button
+          size="large"
+          className={props.classes.button}
+          color="secondary"
+          type="submit"
+          value="Delete"
+          variant="contained"
+          onClick={() => {
+            props.deleteNote(props.note._id);
+          }}
+          style={{ textDecoration: "none" }}
+        >
+          Delete
+        </Button>
+      </div>
+    </CardActions>
+  </Card>
 );
 
 class ViewNote extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            title: '',
-            body: '',
-            stickyNote: '',
-            flashcard: '',
-            image: '',
-            users: [],
-            loading: true,
-            note: []
-        };
-
-        this.deleteNote = this.deleteNote.bind(this);
+    this.state = {
+      title: "",
+      body: "",
+      stickyNote: "",
+      flashcard: "",
+      image: "",
+      users: [],
+      loading: true,
+      note: [],
     };
 
-    componentDidMount() {
-        axios.get('http://localhost:5000/note/' + this.props.match.params.id)
-            .then(response => {
-                console.log('response!', response)
-                this.setState({
-                    title: response.data.title,
-                    body: response.data.body,
-                    stickyNote: response.data.stickyNote,
-                    flashcard: response.data.flashcard,
-                    image: response.data.image,
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+    this.deleteNote = this.deleteNote.bind(this);
+  }
 
-        axios.get('http://localhost:5000/users/')
-            .then(response => {
-                if (response.data.length > 0) {
-                    this.setState({
-                        users: response.data,
-                        loading: false
-                    });
-                }
-            }
-        );
-    };
-
-    deleteNote(id) {
-        axios.delete('http://localhost:5000/note/' + id)
-            .then(res => console.log(res.data)
-        );
-        
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/note/" + this.props.match.params.id)
+      .then((response) => {
+        console.log("response!", response);
         this.setState({
-            note: this.state.note.filter(el => el._id !== id)
+          title: response.data.title,
+          body: response.data.body,
+          stickyNote: response.data.stickyNote,
+          flashcard: response.data.flashcard,
+          image: response.data.image,
         });
-    };
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-    noteList() {
-        return this.state.note.map(currentNote => {
-            return <Note note={currentNote} deleteNote={this.deleteNote} key={currentNote._id}/>;
-        })
-    };
+    axios.get("http://localhost:5000/users/").then((response) => {
+      if (response.data.length > 0) {
+        this.setState({
+          users: response.data,
+          loading: false,
+        });
+      }
+    });
+  }
 
-    render() {
-        if(this.state.loading) return <Typography>Loading</Typography>
+  deleteNote(id) {
+    axios
+      .delete("http://localhost:5000/note/" + id)
+      .then((res) => console.log(res.data));
 
-        return (
-            <div className="cardRoot">
-                <Typography 
-                    gutterBottom 
-                    variant="h5" 
-                    component="h2" 
-                    style={{ fontFamily: "Raleway", textTransform: "uppercase", letterSpacing: "3px" }}
-                >
-                    {this.state.title}
-                </Typography>
+    this.setState({
+      note: this.state.note.filter((el) => el._id !== id),
+    });
+  }
 
-                <br />
+  noteList() {
+    return this.state.note.map((currentNote) => {
+      return (
+        <Note
+          note={currentNote}
+          deleteNote={this.deleteNote}
+          key={currentNote._id}
+        />
+      );
+    });
+  }
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.body}
-                </Typography>
+  render() {
+    if (this.state.loading) return <Typography>Loading</Typography>;
 
-                <br />
+    return (
+      <div className="cardRoot">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="h2"
+          style={{
+            fontFamily: "Raleway",
+            textTransform: "uppercase",
+            letterSpacing: "3px",
+          }}
+        >
+          {this.state.title}
+        </Typography>
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.stickyNote}
-                </Typography>
+        <br />
 
-                <br />
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.body}
+        </Typography>
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.flashcard}
-                </Typography>
+        <br />
 
-                <br />
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.stickyNote}
+        </Typography>
 
-                <Typography
-                    variant="body1" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {this.state.image}
-                </Typography>
+        <br />
 
-                {this.state.note.map(currentNote => {
-                    return <Note note={currentNote} deleteNote={this.deleteNote} key={currentNote._id} classes={this.props.classes}/>;
-                    })
-                }
-            </div>
-        )
-    } 
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.flashcard}
+        </Typography>
+
+        <br />
+
+        <Typography variant="body1" color="textSecondary" component="p">
+          {this.state.image}
+        </Typography>
+
+        {this.state.note.map((currentNote) => {
+          return (
+            <Note
+              note={currentNote}
+              deleteNote={this.deleteNote}
+              key={currentNote._id}
+              classes={this.props.classes}
+            />
+          );
+        })}
+      </div>
+    );
+  }
 }
 
-export default withRouter(ViewNote)
+export default withRouter(ViewNote);
