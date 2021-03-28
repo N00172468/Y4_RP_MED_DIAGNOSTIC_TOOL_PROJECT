@@ -106,12 +106,9 @@ class CreateInfo extends Component {
             prevention: this.state.prevention,
         };
 
-        // console.log(info);
-
         axios.post('http://localhost:5000/info/add', info)
             .then(res => console.log(res.data));
 
-        // window.location = '/';
         this.props.history.push('/')
     };
 
