@@ -45,6 +45,7 @@ function App() {
               <Route path="/create/note" component={CreateNote} />
               <Route path="/view/note/:id" component={ViewNote} />
               
+              {/* Bookmark Component */}
               <Route path="/bookmarks" component={BookmarksPage} />
               <Route path="/symptom" component={SymptomsPage} />
             </Switch>
