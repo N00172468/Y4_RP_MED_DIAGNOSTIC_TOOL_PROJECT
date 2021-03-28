@@ -200,18 +200,8 @@ const Navigation = (props) => {
       >
         <Toolbar className={classes.appBarToolbar}>
           <div className={props.classes.search} edge="start">
+            {/* Search Component. NOT ICON! */}
             <Search />
-
-            {/* </div> */}
-            {/* <InputBase
-                  placeholder="Search…"       
-                  className={
-                    props.classes.inputRoot,
-                    props.classes.inputInput
-                  }
-                  inputProps={{ 'aria-label': 'search' }}
-                  // onChange={onSearchChange}
-                /> */}
           </div>
 
           <IconButton
