@@ -17,7 +17,6 @@ class CreateNote extends Component {
     constructor(props) {
         super(props);
 
-        // this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeBody = this.onChangeBody.bind(this);
         this.onChangeStickyNote = this.onChangeStickyNote.bind(this);
@@ -25,9 +24,7 @@ class CreateNote extends Component {
         this.onChangeImage = this.onChangeImage.bind(this);
 
         this.state = {
-            // username: '',
             title: '',
-            // body: '',
             body: '',
             stickyNote: '',
             flashcard: '',
