@@ -33,13 +33,14 @@ function App() {
           <Navigation>
 
             <Switch>
-              {/* Symptom Information Components */}
+              {/* Symptoms Information Components */}
               <Route path="/" exact component={Homepage} />
               <Route path="/create" component={CreateInfo} />
               <Route path="/view/:id" component={ViewInfo} />
               <Route path="/edit/:id" component={EditInfo} />
               <Route path="/user" component={CreateUser} />
 
+              {/* Notes Components */}
               <Route path="/note" component={NotesPage} />
               <Route path="/create/note" component={CreateNote} />
               <Route path="/view/note/:id" component={ViewNote} />
