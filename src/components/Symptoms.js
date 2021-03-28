@@ -65,33 +65,6 @@ const Symptom = (props) => (
                         View
                     </Link> 
                 </Button>
-                
-                <Button 
-                    size="large" 
-                    color="primary"
-                    type="submit"
-                    variant="contained"
-                    className={props.classes.button}
-                >
-                    <Link to={"/edit/" + props.Symptom._id} style ={{ textDecoration: "none" }}>
-                        Edit
-                    </Link> 
-                </Button>
-
-                <Button 
-                    size="large" 
-                    className={props.classes.button}
-                    color="secondary"
-                    type="submit"
-                    value="Delete"
-                    variant="contained"
-                    onClick={() => { props.deleteSympom(props.Symptom._id) }}
-                    style ={{ textDecoration: "none" }}
-                >
-                    
-                        Delete
-                    
-                </Button>
             </div> */}
     </CardActions>
   </Card>
