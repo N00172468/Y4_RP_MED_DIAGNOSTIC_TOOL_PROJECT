@@ -1,6 +1,6 @@
 # Auxillia Diagnostics
 
-
+![Auxillia Diagnostics](https://github.com/N00172468/Y4_RP_MED_DIAGNOSTIC_TOOL_PROJECT/blob/master/public/Auxillia_Diagnostics_Logo.png)
 
 # Utilising MERN Stack:
 
