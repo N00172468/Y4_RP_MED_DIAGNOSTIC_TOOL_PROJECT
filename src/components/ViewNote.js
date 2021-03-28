@@ -2,43 +2,36 @@ import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import axios from 'axios'
 
-import 'date-fns';
-// import DateFnsUtils from '@date-io/date-fns';
-// import {
-//     MuiPickersUtilsProvider,
-//     KeyboardDatePicker,
-//   } from '@material-ui/pickers';
-
 import {
-    createStyles,
-    withStyles,
+    // createStyles,
+    // withStyles,
     Card,
-    CardActionArea,
+    // CardActionArea,
     CardActions,
-    CardContent,
+    // CardContent,
     Button,
     Typography,
     // InputLabel,
     // MenuItem,
     // Select,
     // FormControl,
-    TextField
+    // TextField
 
 } from "@material-ui/core";
 
 import './../App.css'
 
-const styles = (theme) =>
-  createStyles({
-    root: {
-      backgroundColor: theme.palette.secondary.main,
-      margin: theme.spacing(2)
-    },
-    button: {
-      margin: `0px ${theme.spacing(1)}px`
+// const styles = (theme) =>
+//   createStyles({
+//     root: {
+//       backgroundColor: theme.palette.secondary.main,
+//       margin: theme.spacing(2)
+//     },
+//     button: {
+//       margin: `0px ${theme.spacing(1)}px`
 
-    }
-  });
+//     }
+//   });
   
   const Note = props => (
     <Card className={props.classes.root} >
