@@ -20,8 +20,8 @@ import {
 
 import "./../App.css";
 
-// const BASE_URL = "https://priaid-symptom-checker-v1.p.rapidapi.com"
-// const TOKEN = "3cf5fb64ffmsh61f42d18ae2ad82p1a237ejsn61ee2be8eb99"
+// const BASE_URL = CHECK GITIGNORE OR TXT FILE IN RP DIRECTORY
+// const TOKEN = CHECK GITIGNORE OR TXT FILE IN RP DIRECTORY
 
 const styles = (theme) =>
   createStyles({

@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# const BASE_URL = "https://priaid-symptom-checker-v1.p.rapidapi.com"
+# const TOKEN = "3cf5fb64ffmsh61f42d18ae2ad82p1a237ejsn61ee2be8eb99"
