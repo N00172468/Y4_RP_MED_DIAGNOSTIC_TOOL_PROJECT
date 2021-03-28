@@ -40,16 +40,11 @@ class EditInfo extends Component {
     };
 
     componentDidMount() {
-        // this.setState({
-        //     users: ['test user'],
-        //     username: 'test user'
-        // });
         axios.get('http://localhost:5000/info/' + this.props.match.params.id)
             .then(response => {
                 console.log('response!', response)
                 this.setState({
                     title: response.data.title,
-                    // body: response.data.body,
                     overview: response.data.overview,
                     symptoms: response.data.symptoms,
                     causes: response.data.causes,
@@ -127,7 +122,6 @@ class EditInfo extends Component {
 
         const info = {
             title: this.state.title,
-            // body: this.state.body,
             overview: this.state.overview,
             symptoms: this.state.symptoms,
             causes: this.state.causes,
@@ -160,38 +154,9 @@ class EditInfo extends Component {
                     Edit Your Knowledge
                 </Typography>
 
-                {/* <CreateInfoCard classes={this.props.classes} /> */}
-
                 <Card>
-                    {/* <CardActionArea> */}
                         <CardContent>
                             <form noValidate autoComplete="off">
-                                {/* <FormControl>
-                                    <InputLabel id="demo-simple-select-label">User</InputLabel>  
-
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={this.state.username}
-                                        onChange={this.onChangeUsername}
-                                        style={{ marginBottom: "35px" }}
-                                    >
-                                     
-                                        {
-                                            this.state.users.map((user, i) => {
-                                                
-                                                return <option
-                                                            key={i}
-                                                            value={user.username}
-                                                            onChange={this.handleUserSelect}
-                                                        >
-                                                            {user.username}
-                                                        </option>
-                                            })
-                                        };
-                                    </Select>
-                                </FormControl> */}
-
                                 <TextField 
                                     fullWidth
                                     id="standard-basic" 
@@ -268,7 +233,6 @@ class EditInfo extends Component {
                                 />
                             </form>
                         </CardContent>
-                    {/* </CardActionArea> */}
 
                     <CardActions style={{ padding: '10px', display: 'flex'}}>
                         <div style={{ marginLeft: "auto" }}>
