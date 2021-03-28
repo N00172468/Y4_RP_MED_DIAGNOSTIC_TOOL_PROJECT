@@ -28,6 +28,7 @@ function App() {
     <Router>
       <MuiThemeProvider theme={theme}>
         <div className="App">
+          {/* Navigation Components */}
           <Nav /> 
           <Navigation>
 
