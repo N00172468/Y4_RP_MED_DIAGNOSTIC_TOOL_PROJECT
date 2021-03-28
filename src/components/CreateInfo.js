@@ -201,34 +201,8 @@ class CreateInfo extends Component {
                                     onChange={this.onChangePrevention}
                                     style={{ marginBottom: "35px" }}
                                 />
-                                
-
-                                {/* <TextField 
-                                    id="standard-basic" 
-                                    label="Experience (In Years)" 
-                                    value={this.state.experience}
-                                    onChange={this.onChangeExperience}
-                                    style={{ marginBottom: "35px" }}
-                                />
-
-                                <MuiPickersUtilsProvider utils={DateFnsUtils} style={{ padding: '10px', display: 'flex'}}>
-                                    <div style={{ marginLeft: "auto" }}>
-                                        <KeyboardDatePicker
-                                            margin="normal"
-                                            id="date-picker-dialog"
-                                            label="Date picker dialog"
-                                            format="dd/MM/yyyy"
-                                            value={this.state.date}
-                                            onChange={this.onChangeDate}
-                                            KeyboardButtonProps={{
-                                                'aria-label': 'change date',
-                                        }}
-                                        />
-                                    </div>
-                                </MuiPickersUtilsProvider> */}
                             </form>
                         </CardContent>
-                    {/* </CardActionArea> */}
 
                     <CardActions style={{ padding: '10px', display: 'flex'}}>
                         <div style={{ marginLeft: "auto" }}>
