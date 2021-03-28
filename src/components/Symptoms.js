@@ -1,10 +1,10 @@
 import {
     React,  
     Component, 
-    useState, 
-    useEffect 
+    // useState, 
+    // useEffect 
 } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 
 import {
@@ -12,7 +12,7 @@ import {
     CardActionArea,
     CardActions,
     CardContent,
-    Button,
+    // Button,
     Typography,
     createStyles,
     withStyles
