@@ -27,9 +27,7 @@ class CreateInfo extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            // username: '',
             title: '',
-            // body: '',
             overview: '',
             symptoms: '',
             causes: '',
@@ -52,12 +50,6 @@ class CreateInfo extends Component {
                 }
             });
     };
-
-    // onChangeUsername(e) {
-    //     this.setState({
-    //         username: e.target.value
-    //     });
-    // };
 
     onChangeTitle(e) {
         this.setState({
