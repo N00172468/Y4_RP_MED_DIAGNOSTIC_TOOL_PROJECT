@@ -3,7 +3,7 @@ import {withRouter, Link} from 'react-router-dom';
 import axios from 'axios'
 
 import {
-    createStyles,
+    // createStyles,
     // withStyles,
     Card,
     // CardActionArea,
@@ -17,17 +17,17 @@ import {
 
 import './../App.css'
 
-const styles = (theme) =>
-  createStyles({
-    root: {
-      backgroundColor: theme.palette.secondary.main,
-      margin: theme.spacing(2)
-    },
-    button: {
-      margin: `0px ${theme.spacing(1)}px`
+// const styles = (theme) =>
+//   createStyles({
+//     root: {
+//       backgroundColor: theme.palette.secondary.main,
+//       margin: theme.spacing(2)
+//     },
+//     button: {
+//       margin: `0px ${theme.spacing(1)}px`
 
-    }
-  });
+//     }
+//   });
   
 const Info = props => (
     <Card className={props.classes.root} >
