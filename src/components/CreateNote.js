@@ -89,7 +89,7 @@ class CreateNote extends Component {
 
         axios.post('http://localhost:5000/note/add', info)
             .then(res => console.log(res.data));
-            
+
         this.props.history.push('/')
     };
 
@@ -105,10 +105,7 @@ class CreateNote extends Component {
                     Create Note
                 </Typography>
 
-                {/* <CreateInfoCard classes={this.props.classes} /> */}
-
                 <Card>
-                    {/* <CardActionArea> */}
                         <CardContent>
                             <form noValidate autoComplete="off">
                                 <TextField 
@@ -165,7 +162,6 @@ class CreateNote extends Component {
                                 />
                             </form>
                         </CardContent>
-                    {/* </CardActionArea> */}
 
                     <CardActions style={{ padding: '10px', display: 'flex'}}>
                         <div style={{ marginLeft: "auto" }}>
@@ -186,6 +182,5 @@ class CreateNote extends Component {
         );
     };
 }
-
-// export default withStyles(styles)(CreateInfo)   
+ 
 export default withRouter(CreateNote)
