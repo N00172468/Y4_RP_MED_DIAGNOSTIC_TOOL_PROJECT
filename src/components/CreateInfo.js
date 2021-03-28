@@ -224,5 +224,4 @@ class CreateInfo extends Component {
     };
 }
 
-// export default withStyles(styles)(CreateInfo)   
 export default withRouter(CreateInfo)
