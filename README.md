@@ -1,6 +1,8 @@
-# Auxillia Diagnostics
-
 ![Auxillia Diagnostics](https://github.com/N00172468/Y4_RP_MED_DIAGNOSTIC_TOOL_PROJECT/blob/master/public/Auxillia_Diagnostics_Logo.png)
+
+A responsive web-app that serves as a reference tool for medical students, doctors/nurses, general practitioners and/or emergency workers. It allows medical students and staff to look up symptoms, determine possible causes and recommend appropriate diagnosis.
+
+---
 
 # Utilising MERN Stack:
 
