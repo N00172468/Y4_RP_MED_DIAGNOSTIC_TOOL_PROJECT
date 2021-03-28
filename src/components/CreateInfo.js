@@ -127,29 +127,6 @@ class CreateInfo extends Component {
                 <Card>
                         <CardContent>
                             <form noValidate autoComplete="off">
-                                {/* <FormControl>
-                                    <InputLabel id="demo-simple-select-label">User</InputLabel>  
-
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={this.state.username}
-                                        onChange={this.onChangeUsername}
-                                        style={{ marginBottom: "35px" }}
-                                    >
-                                        {
-                                            this.state.users.map(function(user) {
-                                                return <option
-                                                            key={user}
-                                                            value={user}
-                                                        >
-                                                            {user}
-                                                        </option>
-                                            })
-                                        };
-                                    </Select>
-                                </FormControl> */}
-
                                 <TextField 
                                     fullWidth
                                     id="standard-basic" 
