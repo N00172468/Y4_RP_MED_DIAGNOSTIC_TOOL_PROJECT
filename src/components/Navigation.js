@@ -19,6 +19,7 @@ import {
   CssBaseline,
   fade,
 } from "@material-ui/core";
+
 import {
   Menu,
   Home,
@@ -28,7 +29,6 @@ import {
   LibraryBooksOutlined
 } from "@material-ui/icons";
 
-// const drawerWidth = 60;
 const drawerWidth = 200;
 
 const styles = (theme) => 
@@ -53,7 +53,6 @@ createStyles({
     justifyContent: 'space-between'
   },
   menuButton: {
-    // marginRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
