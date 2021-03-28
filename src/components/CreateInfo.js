@@ -11,71 +11,12 @@ import {
 
 } from "@material-ui/core";
 
-
 import {withRouter} from 'react-router-dom';
 
-
-
-// const styles = (theme) =>
-//   createStyles({
-//     root: {
-//       backgroundColor: theme.palette.secondary.main,
-//       margin: theme.spacing(2)
-//     },
-//     button: {
-//       margin: `0px ${theme.spacing(1)}px`
-
-//     },
-//     formControl: {
-//         margin: theme.spacing(1),
-//         minWidth: 120,
-//     },
-//     selectEmpty: {
-//     marginTop: theme.spacing(2),
-//     },
-//   });
-
-// const CreateInfoCard = props => (
-//     <Card className={props.classes.root} >
-//         <CardActionArea>
-//             <CardContent>
-//                 <FormControl className={props.classes.formControl}>
-//                     <InputLabel id="demo-simple-select-label">User</InputLabel>  
-
-//                     <Select
-//                         labelId="demo-simple-select-label"
-//                         id="demo-simple-select"
-//                         value={this.state.username}
-//                         onChange={this.onChangeUsername}
-//                     >
-//                         {
-//                             this.state.users.map(function(user) {
-//                                 return <option
-//                                             key={user}
-//                                             value={user}
-//                                         >
-//                                             {user}
-//                                         </option>
-//                             })
-//                         };
-//                     </Select>
-//                 </FormControl>
-//             </CardContent>
-//         </CardActionArea>
-//     </Card>
-// );
-
-// const classes = styles();
-// const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-// const handleDateChange = (date) => {
-//     setSelectedDate(date);
-//   };
 class CreateInfo extends Component {
-
     constructor(props) {
         super(props);
 
-        // this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeOverview = this.onChangeOverview.bind(this);
         this.onChangeSymptoms = this.onChangeSymptoms.bind(this);
