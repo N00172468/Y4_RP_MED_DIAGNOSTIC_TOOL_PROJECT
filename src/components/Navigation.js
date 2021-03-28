@@ -199,8 +199,6 @@ const Navigation = (props) => {
         onChange={handleSearchChange}
       >
         <Toolbar className={classes.appBarToolbar}>
-          {/* <Nav />  */}
-
           <div className={props.classes.search} edge="start">
             {/* <div className={props.classes.searchIcon}> */}
             {/* <SearchIcon /> */}
