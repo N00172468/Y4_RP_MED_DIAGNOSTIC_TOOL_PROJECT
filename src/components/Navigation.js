@@ -188,8 +188,6 @@ const Navigation = (props) => {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-  // const onSearchChange = this.props.onSearchChange;
-  // const container = this.window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
