@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import Nav from "./Nav";
+import Search from "./Search"
 
 import {
   createStyles,
@@ -18,22 +17,16 @@ import {
   Hidden,
   Drawer,
   CssBaseline,
-  InputBase,
   fade,
-  TextField
 } from "@material-ui/core";
 import {
   Menu,
   Home,
   AddCircleOutline,
-  Face,
   TurnedInNot,
   Widgets,
-  Search as SearchIcon, //:)
   LibraryBooksOutlined
-  // ListItemIcon
 } from "@material-ui/icons";
-import Search from "./Search"
 
 // const drawerWidth = 60;
 const drawerWidth = 200;
