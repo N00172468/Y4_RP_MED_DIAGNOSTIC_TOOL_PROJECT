@@ -47,6 +47,8 @@ function App() {
               
               {/* Bookmark Component */}
               <Route path="/bookmarks" component={BookmarksPage} />
+
+              {/* Testing API Component */}
               <Route path="/symptom" component={SymptomsPage} />
             </Switch>
           </Navigation>
