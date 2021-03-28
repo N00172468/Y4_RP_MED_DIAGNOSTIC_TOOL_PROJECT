@@ -124,10 +124,7 @@ class CreateInfo extends Component {
                     Publicise Your Knowledge
                 </Typography>
 
-                {/* <CreateInfoCard classes={this.props.classes} /> */}
-
                 <Card>
-                    {/* <CardActionArea> */}
                         <CardContent>
                             <form noValidate autoComplete="off">
                                 {/* <FormControl>
