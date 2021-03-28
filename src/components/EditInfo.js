@@ -12,13 +12,10 @@ import {
 } from "@material-ui/core";
 import {withRouter} from 'react-router-dom';
 
-
-
 class EditInfo extends Component {
     constructor(props) {
         super(props);
 
-        // this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeOverview = this.onChangeOverview.bind(this);
         this.onChangeSymptoms = this.onChangeSymptoms.bind(this);
         this.onChangeCauses = this.onChangeCauses.bind(this);
@@ -30,7 +27,6 @@ class EditInfo extends Component {
 
         this.state = {
             title: '',
-            // body: '',
             overview: '',
             symptoms: '',
             causes: '',
