@@ -112,6 +112,7 @@ const Navigation = (props) => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const drawer = (
     <div>
       <div className={classes.toolbar}>
@@ -142,18 +143,6 @@ const Navigation = (props) => {
             </ListItem>
           ))}
         </Link>
-
-        {/* <Link to="/User" style ={{ textDecoration: "none" }}>
-          {['Add User'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index = <Face />}
-              </ListItemIcon>
-
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </Link> */}
       
         <Link to="/Note" style ={{ textDecoration: "none" }}>
           {['Your Notes'].map((text, index) => (
