@@ -46,12 +46,6 @@ class CreateNote extends Component {
             });
     };
 
-    // onChangeUsername(e) {
-    //     this.setState({
-    //         username: e.target.value
-    //     });
-    // };
-
     onChangeTitle(e) {
         this.setState({
             title: e.target.value
