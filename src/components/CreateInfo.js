@@ -97,9 +97,7 @@ class CreateInfo extends Component {
         e.preventDefault();
 
         const info = {
-            // username: this.state.username,
             title: this.state.title,
-            // body: this.state.body,
             overview: this.state.overview,
             symptoms: this.state.symptoms,
             causes: this.state.causes,
