@@ -8,7 +8,9 @@ const symptomSchema = new Schema({
 }, {
     timestamps: true,
 });
+symptomSchema.index({'$**': 'text'});
 
 const Symptom = mongoose.model('Symptom', symptomSchema);
+
 
 module.exports = Symptom;

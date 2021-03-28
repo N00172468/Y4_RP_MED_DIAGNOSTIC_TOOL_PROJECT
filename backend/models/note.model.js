@@ -13,6 +13,8 @@ const noteSchema = new Schema({
     timestamps: true,
 });
 
+noteSchema.index({'$**': 'text'
+});
 const Note = mongoose.model('Note', noteSchema);
 
 module.exports = Note;

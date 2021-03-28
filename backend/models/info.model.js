@@ -16,6 +16,9 @@ const infoSchema = new Schema({
     timestamps: true,
 });
 
+infoSchema.index({'$**': 'text'});
+
+
 const Info = mongoose.model('Info', infoSchema);
 
 module.exports = Info;

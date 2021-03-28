@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
@@ -97,7 +97,9 @@ const Symptom = props => (
         </CardActions>
     </Card>
 );
-  
+
+// const [posts, setPosts] = useState([]);
+
 class SymptomsPage extends Component {
     constructor(props) {
         super(props);
@@ -156,7 +158,7 @@ class SymptomsPage extends Component {
                     Your Symptoms
                 
                     {/* <div style={{ padding: '10px', display: 'flex'}}> */}
-                        <Button 
+                        {/* <Button 
                             size="large" 
                             color="primary"
                             type="submit"
@@ -166,13 +168,13 @@ class SymptomsPage extends Component {
                             <Link to={"/create/Symptom"} style ={{ textDecoration: "none", float: "right" }}>
                                 Create Symptom
                             </Link> 
-                        </Button>
+                        </Button> */}
                     {/* </div> */}
                 </Typography>
 
                 
-                {this.state.symptoms.length > 0 && this.state.symptoms.map(currentSymptom => {
-                    return <Symptom Symptom={currentSymptom} deleteSymptom={this.deleteSymptom} key={currentSymptom.ID} classes={this.props.classes}/>;
+                {this.state.symptoms.length > 0 && this.state.symptoms.map((currentSymptom, i) => {
+                    return <Symptom Symptom={currentSymptom} deleteSymptom={this.deleteSymptom} key={i} classes={this.props.classes}/>;
                     })
                 }
             </div>

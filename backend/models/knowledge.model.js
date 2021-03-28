@@ -12,6 +12,8 @@ const knowledgeSchema = new Schema({
     timestamps: true,
 });
 
+knowledgeSchema.index({'$**': 'text'});
+
 const Knowledge = mongoose.model('Knowledge', knowledgeSchema);
 
 module.exports = Knowledge;

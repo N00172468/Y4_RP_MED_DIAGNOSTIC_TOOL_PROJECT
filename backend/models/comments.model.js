@@ -12,6 +12,9 @@ const commentsSchema = new Schema({
     timestamps: true,
 });
 
+commentsSchema.index({'$**': 'text'});
+
+
 const Comments = mongoose.model('Comments', commentsSchema);
 
 module.exports = Comments;

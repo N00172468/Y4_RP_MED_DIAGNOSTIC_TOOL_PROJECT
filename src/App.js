@@ -29,8 +29,8 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <Nav /> 
-          {/* <Navigation /> */}
           <Navigation>
+
             <Switch>
               <Route path="/" exact component={Homepage} />
               <Route path="/create" component={CreateInfo} />

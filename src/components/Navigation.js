@@ -29,10 +29,11 @@ import {
   Face,
   TurnedInNot,
   Widgets,
-  Search,
+  Search as SearchIcon, //:)
   LibraryBooksOutlined
   // ListItemIcon
 } from "@material-ui/icons";
+import Search from "./Search"
 
 // const drawerWidth = 60;
 const drawerWidth = 200;
@@ -116,8 +117,8 @@ createStyles({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
 
-    marginLeft: 0,
-    width: '100%',
+    // marginLeft: 0,
+    // width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
@@ -125,10 +126,10 @@ createStyles({
   },
 
   searchIcon: {
-    padding: theme.spacing(0, 2),
+    // padding: theme.spacing(0, 2),
     height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
+    // position: 'absolute',
+    // pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -278,24 +279,25 @@ const Navigation = (props) => {
           <AppBar position="fixed" className={props.classes.appBar} onChange={handleSearchChange}>
             <Toolbar className={classes.appBarToolbar}>
      
-              
               {/* <Nav />  */}
 
               <div className={props.classes.search} edge="start">
-                <div className={props.classes.searchIcon}>
-                  <Search />
+                {/* <div className={props.classes.searchIcon}> */}
+                  {/* <SearchIcon /> */}
                   {/* <TextField /> */}
-                </div>
+                  {/* hello */}
+                  <Search />
 
-                <InputBase
-                  placeholder="Search…"
+                {/* </div> */}
+                {/* <InputBase
+                  placeholder="Search…"       
                   className={
                     props.classes.inputRoot,
                     props.classes.inputInput
                   }
                   inputProps={{ 'aria-label': 'search' }}
                   // onChange={onSearchChange}
-                />
+                /> */}
               </div>
               
               <IconButton

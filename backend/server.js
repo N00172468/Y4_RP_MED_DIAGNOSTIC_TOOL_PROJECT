@@ -45,6 +45,9 @@ const noteRouter = require('./routes/note');
 const knowledgeRouter = require('./routes/knowledge');
 const commentsRouter = require('./routes/comments');
 const symptomRouter = require('./routes/symptom');
+const searchRouter = require('./routes/search');
+
+//:)
 
 app.use('/info', infoRouter);
 app.use('/users', usersRouter);
@@ -52,6 +55,8 @@ app.use('/note', noteRouter);
 app.use('/knowledge', knowledgeRouter);
 app.use('/comments', commentsRouter);
 app.use('/symptom', symptomRouter);
+app.use('/search', searchRouter);
+
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
