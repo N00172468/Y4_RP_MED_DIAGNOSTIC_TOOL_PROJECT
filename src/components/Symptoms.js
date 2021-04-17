@@ -20,8 +20,8 @@ import {
 
 import "./../App.css";
 
-// const BASE_URL = CHECK TXT FILE IN RP DIRECTORY
-// const TOKEN = CHECK TXT FILE IN RP DIRECTORY
+// const BASE_URL = CHECK TXT FILE IN PERSONAL RP DIRECTORY
+// const TOKEN = CHECK TXT FILE IN PERSONAL RP DIRECTORY
 
 const styles = (theme) =>
   createStyles({
