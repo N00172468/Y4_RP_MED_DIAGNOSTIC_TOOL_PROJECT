@@ -41,9 +41,9 @@ function App() {
               <Route path="/user" component={CreateUser} />
 
               {/* Notes Components */}
-              <Route path="/note" component={NotesPage} />
+              <Route path="/notes" component={NotesPage} />
               <Route path="/create/note" component={CreateNote} />
-              <Route path="/view/note/:id" component={ViewNote} />
+              <Route path="/note/:id" component={ViewNote} />
               
               {/* Bookmark Component */}
               <Route path="/bookmarks" component={BookmarksPage} />

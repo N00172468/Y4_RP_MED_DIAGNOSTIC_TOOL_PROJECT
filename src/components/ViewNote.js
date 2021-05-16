@@ -44,7 +44,7 @@ const Note = (props) => (
           className={props.classes.button}
         >
           <Link
-            to={"/view/note/" + props.note._id}
+            to={"/note/" + props.note._id}
             style={{ textDecoration: "none" }}
           >
             View

@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { TextField } from "@material-ui/core";
 
+import { Link } from "react-router-dom";
+
 import { Autocomplete, createFilterOptions } from "@material-ui/lab";
 
 // import 
@@ -27,17 +29,25 @@ const Search = () => {
   const [options, setOptions] = React.useState([]);
 
   React.useEffect(() => {
-    if ( value.length > 3 && !loading && lastSearch) {
+    if ( value.length > 3 && !loading && (lastSearch !== value || lastSearch === "")) {
       console.log('running!')
       setLoading(true)
       axios
         .get("http://localhost:5000/search/" + value)
         .then((response) => {
           setNames(response.data.names);
+
           const flattenedArr = Array.prototype.concat.apply([], response.data.data)
-          console.log('here!', flattenedArr)
+          let result = []
+          response.data.data.map((item, i) => {
+            item.map((subItem, j) => {
+              console.log('yeehaw', response.data.names[i])
+              result.push({type: response.data.names[i], ...subItem})
+            })
+          })
+          console.log('here!', result)
           setLastSearch(value)
-          setOptions(flattenedArr);
+          setOptions(result);
           setLoading(false)
         })
         .catch((error) => {
@@ -47,6 +57,17 @@ const Search = () => {
         });
     }
   }, [value, setLoading, loading]);
+
+  const getLinkURL = (type, id) => {
+    switch(type) {
+      case 'notes':
+        return `/note/${id}`
+      case 'symtom':
+        return `/Sympton`
+      default: 
+      return `/view/${id}`
+    }
+  }
 
   // const fetchOptions = (keyword) => {
   //   axios.get('http://localhost:5000/search/' + keyword)
@@ -91,6 +112,7 @@ const Search = () => {
       handleHomeEndKeys
       options={options}
       getOptionLabel={(option) => {
+        console.log('option', option)
         // Value selected with enter, right from the input
         if (typeof option === "string") {
           return option;
@@ -99,10 +121,11 @@ const Search = () => {
         if (option.inputValue) {
           return option.inputValue;
         }
+        if(option.title && option.title !== "") return option.title
         // Regular option
-        return option.title;
+        return option.symptom;
       }}
-      renderOption={(option) => option}
+      renderOption={(option) => <Link to={getLinkURL(option.type, option._id)}>{option.title ? option.title : option.sympton}</Link>}
       className="searchWidth"  
       onInputChange={(event, value) => {
 

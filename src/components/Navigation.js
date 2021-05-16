@@ -138,7 +138,7 @@ const Navigation = (props) => {
             ))}
           </Link> */}
 
-          <Link to="/Note" style={{ textDecoration: "none" }}>
+          <Link to="/notes" style={{ textDecoration: "none" }}>
             {["Your Notes"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
