@@ -5,7 +5,10 @@ import { TextField } from "@material-ui/core";
 
 import { Autocomplete, createFilterOptions } from "@material-ui/lab";
 
-const filter = createFilterOptions();
+// import 
+
+const filter = createFilterOptions;
+
 
 // const top100Films = [
 //   { title: "The Shawshank Redemption", year: 1994 },
@@ -17,23 +20,33 @@ const filter = createFilterOptions();
 // ];
 
 const Search = () => {
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState('');
+  const [lastSearch, setLastSearch] = React.useState('');
   const [names, setNames] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
   const [options, setOptions] = React.useState([]);
 
   React.useEffect(() => {
-    if (value && value.title && value.title !== "") {
+    if ( value.length > 3 && !loading && lastSearch) {
+      console.log('running!')
+      setLoading(true)
       axios
-        .get("http://localhost:5000/search/" + value.title)
+        .get("http://localhost:5000/search/" + value)
         .then((response) => {
           setNames(response.data.names);
-          setOptions(response.data.data);
+          const flattenedArr = Array.prototype.concat.apply([], response.data.data)
+          console.log('here!', flattenedArr)
+          setLastSearch(value)
+          setOptions(flattenedArr);
+          setLoading(false)
         })
         .catch((error) => {
           console.log(error);
+          setLoading(false)
+
         });
     }
-  }, [value]);
+  }, [value, setLoading, loading]);
 
   // const fetchOptions = (keyword) => {
   //   axios.get('http://localhost:5000/search/' + keyword)
@@ -54,42 +67,28 @@ const Search = () => {
   return (
     <Autocomplete
       value={value}
-      onChange={(event, newValue) => {
-        if (typeof newValue === "string") {
-          setValue({
-            title: newValue,
-          });
-        } else if (newValue && newValue.inputValue) {
-          // Create a new value from the user input
-          setValue({
-            title: newValue.inputValue,
-          });
-        } else {
-          setValue(newValue);
-        }
-      }}
-      filterOptions={(options, params) => {
-        const filtered = filter(options, params);
+      // filterOptions={(options, params) => {
+      //   const filtered = filter(options, params);
 
-        // Suggest the creation of a new value
-        if (params.inputValue !== "") {
-          // filtered.push({
-          //   inputValue: params.inputValue,
-          //   title: `Add "${params.inputValue}"`,
-          // });
+      //   // Suggest the creation of a new value
+      //   if (params.inputValue !== "") {
+      //     // filtered.push({
+      //     //   inputValue: params.inputValue,
+      //     //   title: `Add "${params.inputValue}"`,
+      //     // });
 
-          filtered.push({
-            inputValue: params.inputValue,
-            title: `No results found`,
-          });
-        }
-        console.log("filter", options, params);
-        return filtered;
-      }}
+      //     filtered.push({
+      //       inputValue: params.inputValue,
+      //       title: `No results found`,
+      //     });
+      //   }
+
+        
+      //   return filtered;
+      // }}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
-      id="free-solo-with-text-demo"
       options={options}
       getOptionLabel={(option) => {
         // Value selected with enter, right from the input
@@ -103,11 +102,15 @@ const Search = () => {
         // Regular option
         return option.title;
       }}
-      renderOption={(option) => option.title}
-      style={{ width: 300 }}
-      freeSolo
+      renderOption={(option) => option}
+      className="searchWidth"  
+      onInputChange={(event, value) => {
+
+        setValue(value)
+      }}
+
       renderInput={(params) => (
-        <TextField {...params} label="Search..." variant="filled" />
+        <TextField {...params} label="Search..." variant="filled"  />
       )}
     />
   );

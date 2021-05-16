@@ -54,4 +54,24 @@ body {
   min-width: 375px;
   width: 70%;
 }
-/* -------------------------- */
+/* --------------------------- */
+
+/* ---------- SEARCH BAR ---------- */
+.Navigation-search-10 {
+  width: 100%;
+}
+
+.MuiAutocomplete-hasPopupIcon .MuiAutocomplete-inputRoot[class*="MuiFilledInput-root"], .MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot[class*="MuiFilledInput-root"] {
+  /* max-width: 900px;
+  min-width: 300px; */
+  width: 1250px;
+}
+
+@media screen and (device-width: 375px) {
+  .MuiAutocomplete-hasPopupIcon .MuiAutocomplete-inputRoot[class*="MuiFilledInput-root"], .MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot[class*="MuiFilledInput-root"] {
+    /* max-width: 900px; */
+    /* min-width: 300px; */
+    width: 100%;
+  }
+}
+/* -------------------------------- */
