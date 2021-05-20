@@ -7,19 +7,7 @@ import { Link } from "react-router-dom";
 
 import { Autocomplete, createFilterOptions } from "@material-ui/lab";
 
-// import 
-
 const filter = createFilterOptions;
-
-
-// const top100Films = [
-//   { title: "The Shawshank Redemption", year: 1994 },
-//   { title: "The Godfather", year: 1972 },
-//   { title: "The Godfather: Part II", year: 1974 },
-//   { title: "The Dark Knight", year: 2008 },
-//   { title: "12 Angry Men", year: 1957 },
-//   { title: "Schindler's List", year: 1993 },
-// ];
 
 const Search = () => {
   const [value, setValue] = React.useState('');
@@ -62,51 +50,16 @@ const Search = () => {
     switch(type) {
       case 'notes':
         return `/note/${id}`
-      case 'symtom':
-        return `/Sympton`
+      case 'symptom':
+        return `/Symptom`
       default: 
       return `/view/${id}`
     }
   }
 
-  // const fetchOptions = (keyword) => {
-  //   axios.get('http://localhost:5000/search/' + keyword)
-  //   .then(response => {
-  //     setNames(response.data.names)
-  //     setOptions(response.data.data)
-  //     return response.data.data
-  //   })
-  //   .catch((error) => {
-  //       console.log(error);
-  //   })
-  // }
-
-  // return (
-  //   <TextField onChange={handleSearchChange} value={search} />
-  // )
-
   return (
     <Autocomplete
       value={value}
-      // filterOptions={(options, params) => {
-      //   const filtered = filter(options, params);
-
-      //   // Suggest the creation of a new value
-      //   if (params.inputValue !== "") {
-      //     // filtered.push({
-      //     //   inputValue: params.inputValue,
-      //     //   title: `Add "${params.inputValue}"`,
-      //     // });
-
-      //     filtered.push({
-      //       inputValue: params.inputValue,
-      //       title: `No results found`,
-      //     });
-      //   }
-
-        
-      //   return filtered;
-      // }}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
@@ -125,7 +78,7 @@ const Search = () => {
         // Regular option
         return option.symptom;
       }}
-      renderOption={(option) => <Link to={getLinkURL(option.type, option._id)}>{option.title ? option.title : option.sympton}</Link>}
+      renderOption={(option) => <Link to={getLinkURL(option.type, option._id)}>{option.title ? option.title : option.symptom}</Link>}
       className="searchWidth"  
       onInputChange={(event, value) => {
 

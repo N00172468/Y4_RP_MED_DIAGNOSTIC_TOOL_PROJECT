@@ -15,13 +15,15 @@ import {
     // Button,
     Typography,
     createStyles,
-    withStyles
+    withStyles,
+    Grid
 } from "@material-ui/core"
 
 import "./../App.css";
 
-// const BASE_URL = CHECK TXT FILE IN PERSONAL RP DIRECTORY
-// const TOKEN = CHECK TXT FILE IN PERSONAL RP DIRECTORY
+// const BASE_URL = CHECK RP FOLDER
+// const TOKEN = CHECK RP FOLDER
+
 
 const styles = (theme) =>
   createStyles({
@@ -35,39 +37,36 @@ const styles = (theme) =>
   });
 
 const Symptom = (props) => (
-  <Card className={props.classes.root}>
-    <CardActionArea>
-      <CardContent>
-        <Typography variant="h5" color="textSecondary" component="h5">
-          {props.Symptom.symptom}
-        </Typography>
+  // <Grid container>
+    <Grid item xs={6}> 
+      <Card className={props.classes.root} style={{height: "200px"}}>
+        <CardActionArea>
+          <CardContent>
+            <Typography variant="h5" color="textSecondary" component="h5">
+              {props.Symptom.symptom}
+              {/* {props.symptoms} */}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
 
-        {/* <Typography
-                    variant="body2" 
-                    color="textSecondary"
-                    component="p"    
-                >
-                    {props.Symptom.body}
-                </Typography> */}
-      </CardContent>
-    </CardActionArea>
-
-    <CardActions style={{ padding: "10px", display: "flex" }}>
-      {/* <div style={{ marginLeft: "auto" }}>
-                <Button 
-                    size="large" 
-                    color="info"
-                    type="submit"
-                    variant="contained"
-                    className={props.classes.button}
-                >
-                    <Link to={"/view/Symptom/" + props.Symptom._id} style ={{ textDecoration: "none" }}>
+        <CardActions style={{ padding: "10px", display: "flex" }}>
+          {/* <div style={{ marginLeft: "auto" }}>
+                    <Button 
+                        size="large" 
+                        color="info"
+                        type="submit"
+                        variant="contained"
+                        className={props.classes.button}
+                        >
+                        <Link to={"/view/Symptom/" + props.Symptom._id} style ={{ textDecoration: "none" }}>
                         View
-                    </Link> 
-                </Button>
-            </div> */}
-    </CardActions>
-  </Card>
+                        </Link> 
+                    </Button>
+                  </div> */}
+        </CardActions>
+      </Card>
+    </Grid>
+  // </Grid>
 );
 
 // const [posts, setPosts] = useState([]);
@@ -75,8 +74,6 @@ const Symptom = (props) => (
 class SymptomsPage extends Component {
   constructor(props) {
     super(props);
-
-    // this.deleteSymptom = this.deleteSymptom.bind(this);
 
     this.state = {
       symptoms: [],
@@ -107,17 +104,7 @@ class SymptomsPage extends Component {
       .catch((error) => {
         console.log(error);
       });
-  }
-
-  // deleteSymptom(id) {
-  //     axios.delete('http://localhost:5000/Symptom/' + id)
-  //         .then(res => console.log(res.data)
-  //     );
-
-  //     this.setState({
-  //         symptoms: this.state.Symptom.filter(el => el._id !== id)
-  //     });
-  // };
+  };
 
   render() {
     return (
@@ -132,33 +119,23 @@ class SymptomsPage extends Component {
             letterSpacing: "3px",
           }}
         >
-          Your Symptoms
-          {/* <div style={{ padding: '10px', display: 'flex'}}> */}
-          {/* <Button 
-                            size="large" 
-                            color="primary"
-                            type="submit"
-                            variant="contained"
-                            style={{ marginLeft: "35px" }}
-                        >
-                            <Link to={"/create/Symptom"} style ={{ textDecoration: "none", float: "right" }}>
-                                Create Symptom
-                            </Link> 
-                        </Button> */}
-          {/* </div> */}
+          Categories
         </Typography>
 
-        {this.state.symptoms.length > 0 &&
-          this.state.symptoms.map((currentSymptom, i) => {
-            return (
-              <Symptom
+        <Grid container>
+
+          {this.state.symptoms.length > 0 &&
+            this.state.symptoms.map((currentSymptom, i) => {
+              return (
+                <Symptom
                 Symptom={currentSymptom}
                 deleteSymptom={this.deleteSymptom}
                 key={i}
                 classes={this.props.classes}
-              />
-            );
-          })}
+                />
+                );
+              })}
+        </Grid>
       </div>
     );
   }

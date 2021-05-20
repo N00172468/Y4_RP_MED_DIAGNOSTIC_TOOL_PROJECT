@@ -13,6 +13,9 @@ import {
   withStyles,
 } from "@material-ui/core";
 
+import ImportContactsIcon from '@material-ui/icons/ImportContacts';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+
 import "./../App.css";
 
 const styles = (theme) =>
@@ -24,6 +27,10 @@ const styles = (theme) =>
     button: {
       margin: `0px ${theme.spacing(1)}px`,
     },
+    buttonView: {
+      margin: `0px ${theme.spacing(1)}px`,
+      backgroundColor: theme.palette.primary.main,
+    },
   });
 
 const Info = (props) => (
@@ -31,6 +38,7 @@ const Info = (props) => (
     <CardActionArea>
       <CardContent>
         <Typography variant="h5" color="textSecondary" component="h5">
+          <BookmarkIcon/>
           {props.info.title}
         </Typography>
 
@@ -44,20 +52,20 @@ const Info = (props) => (
       <div style={{ marginLeft: "auto" }}>
         <Button
           size="large"
-          color="info"
+          color="primary"
           type="submit"
           variant="contained"
-          className={props.classes.button}
+          className={props.classes.buttonView}
         >
           <Link
             to={"/view/" + props.info._id}
             style={{ textDecoration: "none" }}
           >
-            View
+            <ImportContactsIcon />
           </Link>
         </Button>
 
-        <Button
+        {/* <Button
           size="large"
           color="primary"
           type="submit"
@@ -85,7 +93,7 @@ const Info = (props) => (
           style={{ textDecoration: "none" }}
         >
           Delete
-        </Button>
+        </Button> */}
       </div>
     </CardActions>
   </Card>

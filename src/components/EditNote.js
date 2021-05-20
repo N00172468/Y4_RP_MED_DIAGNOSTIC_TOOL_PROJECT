@@ -9,10 +9,9 @@ import {
   Typography,
   TextField,
 } from "@material-ui/core";
-
 import { withRouter } from "react-router-dom";
 
-class CreateNote extends Component {
+class EditNote extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +19,6 @@ class CreateNote extends Component {
     this.onChangeBody = this.onChangeBody.bind(this);
     this.onChangeStickyNote = this.onChangeStickyNote.bind(this);
     this.onChangeFlashcard = this.onChangeFlashcard.bind(this);
-    this.onChangeImage = this.onChangeImage.bind(this);
     this.onChangeImage = this.onChangeImage.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -32,19 +30,41 @@ class CreateNote extends Component {
       image: "",
 
       users: [],
+      loading: true,
     };
   }
 
-  // componentDidMount() {
-  //   axios.get("http://localhost:5000/users/").then((response) => {
-  //     if (response.data.length > 0) {
-  //       this.setState({
-  //         users: response.data.map((user) => user.username),
-  //         username: response.data[0].username,
-  //       });
-  //     }
-  //   });
-  // }
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/note/" + this.props.match.params.id)
+      .then((response) => {
+        console.log("response!", response);
+        this.setState({
+          title: response.data.title,
+          body: response.data.body,
+          stickyNote: response.data.stickyNote,
+          flashcard: response.data.flashcard,
+          image: response.data.image
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios.get("http://localhost:5000/users/").then((response) => {
+      if (response.data.length > 0) {
+        this.setState({
+          users: response.data,
+          loading: false,
+        });
+      }
+    });
+  }
+
+  handleUserSelect(e) {
+    console.log("select!", e);
+    // this,set
+  }
 
   onChangeTitle(e) {
     this.setState({
@@ -79,22 +99,28 @@ class CreateNote extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const noteTaking = {
+    const note = {
       title: this.state.title,
       body: this.state.body,
       stickyNote: this.state.stickyNote,
       flashcard: this.state.flashcard,
-      image: this.state.image,
+      image: this.state.image
     };
 
-    axios
-      .post("http://localhost:5000/note/add", noteTaking)
-      .then((res) => console.log(res.data));
+    console.log(note);
 
-    this.props.history.push("/");
+    axios
+      .post(
+        "http://localhost:5000/note/update/" + this.props.match.params.id,
+        note
+      )
+      .then((res) => {
+        this.props.history.push("/");
+      });
   }
 
   render() {
+    if (this.state.loading) return <Typography>Loading</Typography>;
     return (
       <div className="cardRoot">
         <Typography
@@ -107,7 +133,7 @@ class CreateNote extends Component {
             letterSpacing: "3px",
           }}
         >
-          Create Note
+          Edit Your Note
         </Typography>
 
         <Card>
@@ -127,7 +153,7 @@ class CreateNote extends Component {
                 multiline
                 rows={10}
                 id="standard-basic"
-                label="Note"
+                label="Body"
                 value={this.state.body}
                 onChange={this.onChangeBody}
                 style={{ marginBottom: "35px" }}
@@ -149,7 +175,7 @@ class CreateNote extends Component {
                 multiline
                 rows={10}
                 id="standard-basic"
-                label="Flash Card"
+                label="Flashcard"
                 value={this.state.flashcard}
                 onChange={this.onChangeFlashcard}
                 style={{ marginBottom: "35px" }}
@@ -188,4 +214,4 @@ class CreateNote extends Component {
   }
 }
 
-export default withRouter(CreateNote);
+export default withRouter(EditNote);

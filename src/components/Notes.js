@@ -13,6 +13,10 @@ import {
   withStyles,
 } from "@material-ui/core";
 
+import ImportContactsIcon from '@material-ui/icons/ImportContacts';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import "./../App.css";
 
 const styles = (theme) =>
@@ -23,6 +27,18 @@ const styles = (theme) =>
     },
     button: {
       margin: `0px ${theme.spacing(1)}px`,
+    },
+    buttonView: {
+      margin: `0px ${theme.spacing(1)}px`,
+      backgroundColor: theme.palette.primary.main,
+    },
+    buttonEdit: {
+      margin: `0px ${theme.spacing(1)}px`,
+      backgroundColor: theme.palette.secondary.light,
+    },
+    buttonDelete: {
+      margin: `0px ${theme.spacing(1)}px`,
+      backgroundColor: theme.palette.secondary.main,
     },
   });
 
@@ -47,13 +63,13 @@ const Note = (props) => (
           color="info"
           type="submit"
           variant="contained"
-          className={props.classes.button}
+          className={props.classes.buttonView}
         >
           <Link
             to={"/note/" + props.note._id}
             style={{ textDecoration: "none" }}
           >
-            View
+            <ImportContactsIcon />
           </Link>
         </Button>
 
@@ -62,13 +78,13 @@ const Note = (props) => (
           color="primary"
           type="submit"
           variant="contained"
-          className={props.classes.button}
+          className={props.classes.buttonEdit}
         >
           <Link
-            to={"/edit/" + props.note._id}
+            to={"/edit/note/" + props.note._id}
             style={{ textDecoration: "none" }}
           >
-            Edit
+            <EditIcon />
           </Link>
         </Button>
 
@@ -84,7 +100,7 @@ const Note = (props) => (
           }}
           style={{ textDecoration: "none" }}
         >
-          Delete
+          <DeleteIcon />
         </Button>
       </div>
     </CardActions>
@@ -145,7 +161,7 @@ class NotesPage extends Component {
             style={{ marginLeft: "35px" }}
           >
             <Link
-              to={"/create/note"}
+              to={"/note/add"}
               style={{ textDecoration: "none", float: "right" }}
             >
               Create Note

@@ -13,6 +13,11 @@ import {
     withStyles
 } from "@material-ui/core"
 
+import ImportContactsIcon from '@material-ui/icons/ImportContacts';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+
 import "./../App.css";
 
 const styles = (theme) =>
@@ -22,7 +27,19 @@ const styles = (theme) =>
       margin: theme.spacing(2),
     },
     button: {
+      margin: `0px ${theme.spacing(1)}px`
+    },
+    buttonView: {
       margin: `0px ${theme.spacing(1)}px`,
+      backgroundColor: theme.palette.primary.main,
+    },
+    buttonEdit: {
+      margin: `0px ${theme.spacing(1)}px`,
+      backgroundColor: theme.palette.secondary.light,
+    },
+    buttonDelete: {
+      margin: `0px ${theme.spacing(1)}px`,
+      backgroundColor: theme.palette.secondary.main,
     },
   });
 
@@ -31,6 +48,7 @@ const Info = (props) => (
     <CardActionArea>
       <CardContent>
         <Typography variant="h5" color="textSecondary" component="h5">
+        <BookmarkIcon/>
           {props.info.title}
         </Typography>
 
@@ -44,47 +62,18 @@ const Info = (props) => (
       <div style={{ marginLeft: "auto" }}>
         <Button
           size="large"
-          color="info"
+          color="primary"
           type="submit"
           variant="contained"
-          className={props.classes.button}
+          className={props.classes.buttonView}
         >
           <Link
             to={"/view/" + props.info._id}
             style={{ textDecoration: "none" }}
           >
-            View
+            {/* View */}
+            <ImportContactsIcon />
           </Link>
-        </Button>
-
-        <Button
-          size="large"
-          color="primary"
-          type="submit"
-          variant="contained"
-          className={props.classes.button}
-        >
-          <Link
-            to={"/edit/" + props.info._id}
-            style={{ textDecoration: "none" }}
-          >
-            Edit
-          </Link>
-        </Button>
-
-        <Button
-          size="large"
-          className={props.classes.button}
-          color="secondary"
-          type="submit"
-          value="Delete"
-          variant="contained"
-          onClick={() => {
-            props.deleteInfo(props.info._id);
-          }}
-          style={{ textDecoration: "none" }}
-        >
-          Delete
         </Button>
       </div>
     </CardActions>
@@ -109,37 +98,38 @@ const Note = (props) => (
       <div style={{ marginLeft: "auto" }}>
         <Button
           size="large"
-          color="info"
+          color="primary"
           type="submit"
           variant="contained"
-          className={props.classes.button}
+          className={props.classes.buttonView}
         >
           <Link
             to={"/note/" + props.note._id}
             style={{ textDecoration: "none" }}
           >
-            View
+            <ImportContactsIcon />
           </Link>
         </Button>
 
         <Button
           size="large"
-          color="primary"
+          color="info"
           type="submit"
           variant="contained"
-          className={props.classes.button}
+          // className={props.classes.button}
+          className={props.classes.buttonEdit}
         >
           <Link
             to={"/edit/" + props.note._id}
             style={{ textDecoration: "none" }}
           >
-            Edit
+            {/* Edit */}
+            <EditIcon />
           </Link>
         </Button>
 
         <Button
           size="large"
-          className={props.classes.button}
           color="secondary"
           type="submit"
           value="Delete"
@@ -149,7 +139,8 @@ const Note = (props) => (
           }}
           style={{ textDecoration: "none" }}
         >
-          Delete
+          {/* Delete */}
+          <DeleteIcon />
         </Button>
       </div>
     </CardActions>

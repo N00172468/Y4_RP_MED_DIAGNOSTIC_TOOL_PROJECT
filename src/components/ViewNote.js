@@ -3,19 +3,13 @@ import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 
 import {
-  // createStyles,
-  // withStyles,
   Card,
-  // CardActionArea,
+  CardActionArea,
   CardActions,
-  // CardContent,
+  CardContent,
   Button,
   Typography,
-  // InputLabel,
-  // MenuItem,
-  // Select,
-  // FormControl,
-  // TextField
+  Grid
 } from "@material-ui/core";
 
 import "./../App.css";
@@ -178,21 +172,46 @@ class ViewNote extends Component {
 
         <br />
 
-        <Typography variant="body1" color="textSecondary" component="p">
-          {this.state.stickyNote}
-        </Typography>
+        <Grid container>
+          <Grid item xs={4}>
+            <Card style={{backgroundColor: "#fae034", width: "95%"}}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    Sticky Note:
+                  </Typography>
 
-        <br />
+                  <Typography variant="body1" color="textSecondary" component="p">
+                    {this.state.stickyNote}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
 
-        <Typography variant="body1" color="textSecondary" component="p">
-          {this.state.flashcard}
-        </Typography>
+          <br />
 
-        <br />
+          <Grid item xs={8}>
+            <Card style={{backgroundColor: "#fab134"}}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography variant="h5" color="textSecondary" component="p">
+                    Flashcard:
+                  </Typography>
+                  <Typography variant="body1" color="textSecondary" component="p">
+                    {this.state.flashcard}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        </Grid>
+
+        {/* <br />
 
         <Typography variant="body1" color="textSecondary" component="p">
           {this.state.image}
-        </Typography>
+        </Typography> */}
 
         {this.state.note.map((currentNote) => {
           return (

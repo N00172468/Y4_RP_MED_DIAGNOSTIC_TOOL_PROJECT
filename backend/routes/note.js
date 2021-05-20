@@ -16,7 +16,7 @@ router.route('/add').post((req, res) => {
     const image = req.body.image;
 
     const newNote = new Note({
-        username,
+        // username,
         title,
         body,
         stickyNote,

@@ -160,7 +160,7 @@ const Navigation = (props) => {
             ))}
           </Link>
 
-          <Link to="/Symptom" style={{ textDecoration: "none" }}>
+          {/* <Link to="/Symptom" style={{ textDecoration: "none" }}>
             {["Symptom"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>
@@ -170,9 +170,9 @@ const Navigation = (props) => {
                 <ListItemText primary={text} />
               </ListItem>
             ))}
-          </Link>
+          </Link> */}
 
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/Symptom" style={{ textDecoration: "none" }}>
             {["Categories"].map((text, index) => (
               <ListItem button key={text}>
                 <ListItemIcon>{(index = <Widgets />)}</ListItemIcon>
